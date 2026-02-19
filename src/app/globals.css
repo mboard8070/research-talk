@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050508;
+  --foreground: #e8e8e8;
+  --accent: #00d4ff;
+  --accent-dim: rgba(0, 212, 255, 0.15);
+  --accent-glow: rgba(0, 212, 255, 0.4);
+  --surface: #111118;
+  --surface-light: #1a1a24;
+  --text-secondary: #888899;
+  --mx: 0;
+  --my: 0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-dim: var(--accent-dim);
+  --color-accent-glow: var(--accent-glow);
+  --color-surface: var(--surface);
+  --color-surface-light: var(--surface-light);
+  --color-text-secondary: var(--text-secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html,
+body {
+  overflow: hidden;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Glitch keyframes ── */
+
+@keyframes glitch-main {
+  0% {
+    clip-path: inset(42% 0 28% 0);
+    transform: translate(-6px, 2px);
+  }
+  15% {
+    clip-path: inset(12% 0 58% 0);
+    transform: translate(7px, -1px);
+  }
+  30% {
+    clip-path: inset(62% 0 3% 0);
+    transform: translate(-5px, 0);
+  }
+  45% {
+    clip-path: inset(22% 0 45% 0);
+    transform: translate(8px, 1px);
+  }
+  60% {
+    clip-path: inset(72% 0 8% 0);
+    transform: translate(-7px, -2px);
+  }
+  75% {
+    clip-path: inset(5% 0 68% 0);
+    transform: translate(5px, 1px);
+  }
+  100% {
+    clip-path: inset(35% 0 32% 0);
+    transform: translate(-6px, 0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes glitch-r {
+  0% {
+    clip-path: inset(32% 0 38% 0);
+    transform: translate(8px, -2px);
+  }
+  20% {
+    clip-path: inset(58% 0 18% 0);
+    transform: translate(-7px, 3px);
+  }
+  40% {
+    clip-path: inset(8% 0 52% 0);
+    transform: translate(6px, -1px);
+  }
+  60% {
+    clip-path: inset(48% 0 22% 0);
+    transform: translate(-8px, 2px);
+  }
+  80% {
+    clip-path: inset(18% 0 48% 0);
+    transform: translate(7px, -2px);
+  }
+  100% {
+    clip-path: inset(68% 0 8% 0);
+    transform: translate(-5px, 1px);
+  }
+}
+
+@keyframes glitch-b {
+  0% {
+    clip-path: inset(52% 0 18% 0);
+    transform: translate(-8px, 2px);
+  }
+  20% {
+    clip-path: inset(18% 0 52% 0);
+    transform: translate(7px, -3px);
+  }
+  40% {
+    clip-path: inset(38% 0 28% 0);
+    transform: translate(-6px, 1px);
+  }
+  60% {
+    clip-path: inset(72% 0 3% 0);
+    transform: translate(8px, -2px);
+  }
+  80% {
+    clip-path: inset(3% 0 62% 0);
+    transform: translate(-7px, 2px);
+  }
+  100% {
+    clip-path: inset(28% 0 42% 0);
+    transform: translate(5px, -1px);
+  }
+}
+
+/* ── Parallax layers ── */
+
+.parallax-subtle {
+  transition: transform 0.3s ease-out;
+  transform: translate(
+    calc(var(--mx) * 5px),
+    calc(var(--my) * 3px)
+  );
+}
+
+.parallax-medium {
+  transition: transform 0.3s ease-out;
+  transform: translate(
+    calc(var(--mx) * 15px),
+    calc(var(--my) * 10px)
+  );
+}
+
+.parallax-strong {
+  transition: transform 0.3s ease-out;
+  transform: translate(
+    calc(var(--mx) * 25px),
+    calc(var(--my) * 15px)
+  );
 }

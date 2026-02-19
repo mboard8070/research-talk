@@ -1,65 +1,1867 @@
-import Image from "next/image";
+"use client";
+
+import dynamic from "next/dynamic";
+import Presentation, {
+  AnimateIn,
+  SlideData,
+} from "@/components/Presentation";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
+import NeuralNetwork from "@/components/NeuralNetwork";
+import CustomCursor from "@/components/CustomCursor";
+import GlitchText from "@/components/GlitchText";
+import RotatingWords from "@/components/RotatingWords";
+import ImageCycler from "@/components/ImageCycler";
+import { useEffect } from "react";
+
+const Background3D = dynamic(() => import("@/components/Background3D"), {
+  ssr: false,
+});
+
+/* ── Mouse parallax tracker (sets CSS custom properties) ── */
+function useMouseParallax() {
+  useEffect(() => {
+    const handleMouse = (e: MouseEvent) => {
+      const x = e.clientX / window.innerWidth - 0.5;
+      const y = e.clientY / window.innerHeight - 0.5;
+      document.documentElement.style.setProperty("--mx", `${x}`);
+      document.documentElement.style.setProperty("--my", `${y}`);
+    };
+    window.addEventListener("mousemove", handleMouse);
+    return () => window.removeEventListener("mousemove", handleMouse);
+  }, []);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SLIDE CONTENT
+   Edit your slides below. Each slide has an id and content.
+   Use AnimateIn to stagger-animate elements within a slide.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Image base path shorthand ── */
+const img = (path: string) => `/images/PresImages/${path}`;
+
+const slides: SlideData[] = [
+  /* ── 01 · Title ── */
+  {
+    id: "title",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-6">
+        <NeuralNetwork />
+        <div
+          className="fixed inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%)",
+            zIndex: 2,
+          }}
+        />
+        <div className="relative z-10 flex flex-col items-center justify-center text-center gap-6">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-[0.3em] uppercase parallax-subtle">
+              DAAP &middot; School of Art &middot; Games &amp; Animation
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-tight parallax-strong">
+              <GlitchText>Matthew Board, MFA</GlitchText>
+            </h1>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <div
+              className="w-24 h-[2px] bg-accent mx-auto parallax-medium"
+              style={{ boxShadow: "0 0 12px var(--accent-glow)" }}
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <p className="text-xl text-text-secondary max-w-2xl leading-relaxed parallax-medium">
+              <RotatingWords
+                words={[
+                  "Technical Artist",
+                  "Indie Developer",
+                  "Modeling & Animation",
+                  "Researcher",
+                  "Educator",
+                ]}
+                interval={2800}
+              />
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.55}>
+            <p className="font-mono text-xs text-text-secondary/50 mt-6 parallax-subtle">
+              Assistant Professor of Games &amp; Animation
+            </p>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── 02 · About ── */
+  {
+    id: "about",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="flex flex-col gap-6">
+          <AnimateIn>
+            <h2 className="text-4xl font-bold leading-tight">
+              About me
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed">
+              Indie game developer, technical artist, and creative AI researcher
+              exploring the intersection of artificial intelligence and 3D content
+              creation. From shipping games on Steam to building local AI systems
+              on NVIDIA hardware, my work bridges traditional modeling and animation
+              pipelines with emerging AI-driven workflows.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <div className="flex flex-wrap gap-3 mt-2">
+              {["Creative AI", "Game Dev", "Tech Art", "3D Modeling", "Animation"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 rounded-full border border-accent/30 text-accent text-sm font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.2}>
+          <div className="aspect-square rounded-lg bg-surface border border-surface-light flex items-center justify-center overflow-hidden max-w-[50%] mx-auto">
+            <img src="/images/headshot.jpg" alt="Matthew Board" className="w-full h-full object-cover" />
+          </div>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── 04 · Section: Creative Work ── */
+  {
+    id: "section-work",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-6">
+        <AnimateIn>
+          <p className="font-mono text-sm text-text-secondary/50 tracking-[0.3em] uppercase">
+            01
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <h2 className="text-5xl md:text-6xl font-bold">
+            Creative <span className="text-accent">Work</span>
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.25}>
+          <div
+            className="w-16 h-[2px] bg-accent mt-2"
+            style={{ boxShadow: "0 0 12px var(--accent-glow)" }}
+          />
+        </AnimateIn>
+        <AnimateIn delay={0.4}>
+          <div className="flex flex-col gap-5 mt-4">
+            {/* 3D Apps */}
+            <div className="flex flex-col items-center gap-2">
+              <p className="font-mono text-xs text-text-secondary/50 uppercase tracking-wider">3D &amp; Sculpting</p>
+              <div className="flex items-center gap-5">
+                {[
+                  { src: "/images/logos/maya.svg", alt: "Maya" },
+                  { src: "/images/logos/3dsmax.svg", alt: "3ds Max" },
+                  { src: "/images/logos/blender.svg", alt: "Blender" },
+                  { src: "/images/logos/zbrush.svg", alt: "ZBrush" },
+                ].map((logo) => (
+                  <div key={logo.alt} className="flex flex-col items-center gap-1">
+                    <img src={logo.src} alt={logo.alt} className="w-8 h-8 opacity-70" style={{ filter: "brightness(0) invert(1)" }} />
+                    <span className="text-[10px] text-text-secondary/50 font-mono">{logo.alt}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Texturing & Design */}
+            <div className="flex flex-col items-center gap-2">
+              <p className="font-mono text-xs text-text-secondary/50 uppercase tracking-wider">Texturing &amp; Design</p>
+              <div className="flex items-center gap-5">
+                {[
+                  { src: "/images/logos/substance-painter.svg", alt: "Substance Painter" },
+                  { src: "/images/logos/substance-designer.svg", alt: "Substance Designer" },
+                  { src: "/images/logos/photoshop.svg", alt: "Photoshop" },
+                  { src: "/images/logos/illustrator.svg", alt: "Illustrator" },
+                ].map((logo) => (
+                  <div key={logo.alt} className="flex flex-col items-center gap-1">
+                    <img src={logo.src} alt={logo.alt} className="w-8 h-8 opacity-70" style={{ filter: "brightness(0) invert(1)" }} />
+                    <span className="text-[10px] text-text-secondary/50 font-mono">{logo.alt}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Engines & Dev */}
+            <div className="flex flex-col items-center gap-2">
+              <p className="font-mono text-xs text-text-secondary/50 uppercase tracking-wider">Engines &amp; Dev</p>
+              <div className="flex items-center gap-5">
+                {[
+                  { src: "/images/logos/unreal-engine.svg", alt: "Unreal Engine" },
+                  { src: "/images/logos/rider.svg", alt: "Rider" },
+                  { src: "/images/logos/pycharm.svg", alt: "PyCharm" },
+                  { src: "/images/logos/github.svg", alt: "GitHub" },
+                ].map((logo) => (
+                  <div key={logo.alt} className="flex flex-col items-center gap-1">
+                    <img src={logo.src} alt={logo.alt} className="w-8 h-8 opacity-70" style={{ filter: "brightness(0) invert(1)" }} />
+                    <span className="text-[10px] text-text-secondary/50 font-mono">{logo.alt}</span>
+                  </div>
+                ))}
+              </div>
+            </div>          </div>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ══════════════════════════════════════
+     ASTRONAUT
+     ══════════════════════════════════════ */
+
+  /* ── 05 · Astronaut — Hero ── */
+  {
+    id: "astronaut-hero",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col gap-5">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Character Art
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">Astronaut</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed">
+              A character study exploring realistic skin and hair rendering in UE5.
+              Head textures were built layer-by-layer in Substance Painter — from blood
+              through skin layers to a final makeup pass. Hair was crafted in XGen with
+              guides. Rendering leveraged Metahuman eye shaders and subsurface profiles,
+              with a ZBrush cavity map breaking up surface roughness and doubled-up
+              normals for extra skin detail. The suit was retopologized in Modo,
+              sculpted in ZBrush, and painted in Substance Painter.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <div className="flex flex-wrap gap-2">
+              {["ZBrush", "Substance Painter", "UE5", "XGen", "Modo"].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.15}>
+          <img
+            src={img("Astronaut/FullBodyHelmet.jpg")}
+            alt="Astronaut — Full Body"
+            className="w-full max-h-[calc(100vh-160px)] object-contain rounded-lg border border-surface-light"
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── 06 · Astronaut — Detail Plates ── */
+  {
+    id: "astronaut-details",
+    content: (
+      <div className="w-full flex flex-col gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Astronaut &middot; Pipeline &amp; Detail
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <ImageCycler
+            images={[
+              { src: img("Astronaut/NoMakeUp.jpg"), alt: "No Makeup" },
+              { src: img("Astronaut/MakeupPass.jpg"), alt: "Makeup Pass" },
+              { src: img("Astronaut/FaceDetail.jpg"), alt: "Face Detail" },
+              { src: img("Astronaut/SkinDetail.jpg"), alt: "Skin Detail" },
+              { src: img("Astronaut/SkinShader.jpg"), alt: "Skin Shader" },
+              { src: img("Astronaut/SubstancePainterDetail.jpg"), alt: "Substance Painter" },
+              { src: img("Astronaut/ArtDetail.jpg"), alt: "Hair Guides" },
+              { src: img("Astronaut/SculptDetail.jpg"), alt: "Sculpt Detail" },
+              { src: img("Astronaut/SculptedSuit.jpg"), alt: "Sculpted Suit" },
+              { src: img("Astronaut/SuitDetail1.jpg"), alt: "Suit Detail" },
+              { src: img("Astronaut/SuitDetail02.jpg"), alt: "Suit Shoulder" },
+              { src: img("Astronaut/CGenDetail.jpg"), alt: "Leg Detail" },
+              { src: img("Astronaut/HandDetail.jpg"), alt: "Hand Detail" },
+              { src: img("Astronaut/Helmet34.jpg"), alt: "Helmet 3/4" },
+              { src: img("Astronaut/HelmetGlass.jpg"), alt: "Helmet Glass" },
+              { src: img("Astronaut/LightRig.jpg"), alt: "UE5 Light Rig" },
+              { src: img("Astronaut/FullBody.jpg"), alt: "Full Body" },
+            ]}
+            interval={4000}
+            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ══════════════════════════════════════
+     IGGY POP
+     ══════════════════════════════════════ */
+
+  /* ── 07 · Iggy Pop — Hero ── */
+  {
+    id: "iggy-hero",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <img
+            src={img("IggyPop/matthew-board-iggyportrait-0001.jpg")}
+            alt="Iggy Pop — Portrait"
+            className="w-full rounded-lg border border-surface-light"
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Digital Likeness
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">Iggy Pop</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              Inspired by seeing Iggy Pop perform live in Chicago in 2010, this
+              digital likeness began as a personal character study and evolved into
+              a real-time rigged model. In 2016, AST Studios licensed the character
+              model and textures for the Oneohtrix Point Never &amp; Iggy Pop music
+              video &ldquo;The Pure and the Damned&rdquo; from the motion picture{" "}
+              <em>Good Time</em>, which debuted at Sundance 2017. Recently reworked
+              for UE5 with subsurface shading, strand-based hair in XGen, repainted
+              textures in Substance Painter, and path-traced rendering.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.35}>
+            <div className="flex flex-wrap gap-2">
+              {["ZBrush", "XGen", "Keyshot", "Substance"].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── 08 · Iggy Pop — Details ── */
+  {
+    id: "iggy-details",
+    content: (
+      <div className="w-full flex flex-col gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Iggy Pop &middot; Process &amp; Detail
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <ImageCycler
+            images={[
+              { src: img("IggyPop/IggyZBrush.jpg"), alt: "ZBrush Sculpt" },
+              { src: img("IggyPop/IggyXGen.jpg"), alt: "XGen Hair" },
+              { src: img("IggyPop/IggyKeyshot.jpg"), alt: "Keyshot Render" },
+              { src: img("IggyPop/IggyTextureMap.jpg"), alt: "Texture Map" },
+              { src: img("IggyPop/IggyTorso.jpg"), alt: "Torso Detail" },
+              { src: img("IggyPop/IggyRefSheet.jpg"), alt: "Reference Sheet" },
+            ]}
+            interval={4000}
+            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ══════════════════════════════════════
+     KAMODO STEVE
+     ══════════════════════════════════════ */
+
+  /* ── 09 · Kamodo Steve — Hero ── */
+  {
+    id: "kamodo-hero",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+        <div className="md:col-span-2 flex flex-col gap-5">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Indie Game &middot; Published on Steam
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">Kamodo Steve:<br />Janitor on Fire!</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <img
+              src={img("KamodoSteve/steam/header.jpg")}
+              alt="Steam Header"
+              className="w-full rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              A janitor discovers the source of the poison hurting his town
+              at a local chemical plant. Inspired by the same true story as
+              the film <em>Dark Waters</em>, Kamodo Steve is a solo-developed
+              indie title published on Steam built in Unreal Engine.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <div className="flex flex-wrap gap-2">
+              {["Unreal Engine", "Maya", "Substance", "Co-op", "Steam"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+          <AnimateIn delay={0.35}>
+            <div className="flex items-center gap-4 mt-1">
+              {/* Windows */}
+              <svg className="w-6 h-6 text-text-secondary/70" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
+              </svg>
+              {/* Steam */}
+              <svg className="w-6 h-6 text-text-secondary/70" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012zm8.4-9.3c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z" />
+              </svg>
+            </div>
+          </AnimateIn>
+        </div>
+        <div className="md:col-span-3 grid grid-cols-2 gap-2">
+          <AnimateIn delay={0.1}>
+            <video autoPlay muted loop playsInline className="w-full aspect-video object-cover rounded-lg border border-surface-light">
+              <source src={img("KamodoSteve/steam/gameplay_clip_1.mp4")} type="video/mp4" />
+            </video>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <img src={img("KamodoSteve/steam/ss_01.jpg")} alt="Gameplay" className="w-full aspect-video object-cover rounded-lg border border-surface-light" />
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <img src={img("KamodoSteve/steam/ss_03.jpg")} alt="Environment" className="w-full aspect-video object-cover rounded-lg border border-surface-light" />
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <video autoPlay muted loop playsInline className="w-full aspect-video object-cover rounded-lg border border-surface-light">
+              <source src={img("KamodoSteve/steam/gameplay_clip_2.mp4")} type="video/mp4" />
+            </video>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── 10 · Kamodo Steve — Gameplay Clips ── */
+  {
+    id: "kamodo-gameplay",
+    content: (
+      <div className="w-full flex flex-col gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Kamodo Steve &middot; Gameplay Clips
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <div className="grid grid-cols-3 gap-2">
+            <iframe src="https://www.youtube.com/embed/7vAlTsZSnN0?autoplay=1&mute=1&controls=0&loop=1&playlist=7vAlTsZSnN0&modestbranding=1&rel=0" className="w-full aspect-video rounded border border-surface-light" allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" title="Jetpack Gameplay" />
+            <iframe src="https://www.youtube.com/embed/TXTpwV1bFTE?autoplay=1&mute=1&controls=0&loop=1&playlist=TXTpwV1bFTE&modestbranding=1&rel=0" className="w-full aspect-video rounded border border-surface-light" allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" title="Boss Battle" />
+            <iframe src="https://www.youtube.com/embed/bP-q69kJNQo?autoplay=1&mute=1&controls=0&loop=1&playlist=bP-q69kJNQo&modestbranding=1&rel=0" className="w-full aspect-video rounded border border-surface-light" allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" title="Aggro Rocket Pods" />
+            <iframe src="https://www.youtube.com/embed/3R7B0hfoIjY?autoplay=1&mute=1&controls=0&loop=1&playlist=3R7B0hfoIjY&modestbranding=1&rel=0" className="w-full aspect-video rounded border border-surface-light" allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" title="Shield Feedback" />
+            <iframe src="https://www.youtube.com/embed/UaJTu94KZGU?autoplay=1&mute=1&controls=0&loop=1&playlist=UaJTu94KZGU&modestbranding=1&rel=0" className="w-full aspect-video rounded border border-surface-light" allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" title="10sec Short" />
+            <iframe src="https://www.youtube.com/embed/ZycgoKhTME8?autoplay=1&mute=1&controls=0&loop=1&playlist=ZycgoKhTME8&modestbranding=1&rel=0" className="w-full aspect-video rounded border border-surface-light" allow="autoplay; encrypted-media" allowFullScreen frameBorder="0" title="Quick Teaser" />
+          </div>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── 11 · Kamodo Steve — Art Pipeline ── */
+  {
+    id: "kamodo-art",
+    content: (
+      <div className="w-full flex flex-col gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Kamodo Steve &middot; Art &amp; Pipeline
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <ImageCycler
+            images={[
+              { src: img("KamodoSteve/bear.jpg"), alt: "Bear Character" },
+              { src: img("KamodoSteve/BearFurShader.jpg"), alt: "Bear Fur Shader" },
+              { src: img("KamodoSteve/Island.jpg"), alt: "Island Environment" },
+              { src: img("KamodoSteve/FoliageBeauty.jpg"), alt: "Foliage" },
+              { src: img("KamodoSteve/TIkiDetail.jpg"), alt: "Tiki Detail" },
+              { src: img("KamodoSteve/SleekTikiMascot.jpg"), alt: "Tiki Mascot" },
+              { src: img("KamodoSteve/FoliageDetail.jpg"), alt: "Foliage Detail" },
+              { src: img("KamodoSteve/MushroomTexture.jpg"), alt: "Mushroom Texture" },
+              { src: img("KamodoSteve/JadeTexture.jpg"), alt: "Jade Texture" },
+            ]}
+            interval={4000}
+            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── 12 · Kamodo Steve — Trailer ── */
+  {
+    id: "kamodo-trailer",
+    content: (
+      <div className="w-full flex flex-col gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Kamodo Steve &middot; Game Trailer
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <YouTubeEmbed videoId="kAY_Dq0bipA" />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ══════════════════════════════════════
+     STORIES FROM THE CORES
+     ══════════════════════════════════════ */
+
+  /* ── 11 · Stories — Hero ── */
+  {
+    id: "stories-hero",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <img
+            src={img("StoriesFromTheCores/AttractScreen.jpg")}
+            alt="Stories from the Cores — Attract Screen"
+            className="w-full rounded-lg border border-surface-light"
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Interactive Installation
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">Stories from the Cores</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              An educational game where players analyze evidence from beneath the
+              ocean floor to unlock dramatic stories. Join science bot Rovee on
+              expeditions with the International Ocean Discovery Program — drill
+              core samples, compare layers, investigate hypotheses, and piece
+              together the stories hidden in the Earth&apos;s geological record.
+              Published on Steam.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.35}>
+            <div className="flex flex-wrap gap-2">
+              {["Unreal Engine", "ZBrush", "Maya", "Substance", "Interactive"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+          <AnimateIn delay={0.45}>
+            <div className="flex items-center gap-4 mt-1">
+              {/* Windows */}
+              <svg className="w-6 h-6 text-text-secondary/70" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801" />
+              </svg>
+              {/* macOS */}
+              <svg className="w-6 h-6 text-text-secondary/70" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+              </svg>
+              {/* Steam */}
+              <svg className="w-6 h-6 text-text-secondary/70" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 12-5.373 12-12s-5.373-12-12-12zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.454 1.012zm8.4-9.3c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.253 0-2.265-1.014-2.265-2.265z" />
+              </svg>
+              {/* Android */}
+              <svg className="w-6 h-6 text-text-secondary/70" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.523 15.341c-.5 0-.91-.41-.91-.91s.41-.91.91-.91.91.41.91.91-.41.91-.91.91zm-11.046 0c-.5 0-.91-.41-.91-.91s.41-.91.91-.91.91.41.91.91-.41.91-.91.91zm11.4-6.24l1.96-3.39c.11-.18.04-.41-.14-.52-.18-.11-.41-.04-.52.14l-1.99 3.43C15.46 7.82 13.8 7.34 12 7.34s-3.46.48-5.17 1.38L4.84 5.33c-.11-.18-.34-.25-.52-.14-.18.11-.25.34-.14.52l1.96 3.39C2.86 11.17.5 14.58.5 18.5h23c0-3.92-2.36-7.33-5.63-9.4z" />
+              </svg>
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── 12 · Stories — Details ── */
+  {
+    id: "stories-details",
+    content: (
+      <div className="w-full flex flex-col gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Stories from the Cores &middot; Assets &amp; Pipeline
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <ImageCycler
+            images={[
+              { src: img("StoriesFromTheCores/ColumbiaMammot.jpg"), alt: "Columbian Mammoth" },
+              { src: img("StoriesFromTheCores/MammothSculpt.jpg"), alt: "Mammoth Sculpt" },
+              { src: img("StoriesFromTheCores/Mososaur.jpg"), alt: "Mososaur" },
+              { src: img("StoriesFromTheCores/Forams1.jpg"), alt: "Foraminifera" },
+              { src: img("StoriesFromTheCores/Rovee.jpg"), alt: "Rovee Character" },
+              { src: img("StoriesFromTheCores/Kiosk.jpg"), alt: "Museum Kiosk" },
+              { src: img("StoriesFromTheCores/steam/ss_01.jpg"), alt: "Gameplay" },
+              { src: img("StoriesFromTheCores/steam/ss_02.jpg"), alt: "Gameplay" },
+              { src: img("StoriesFromTheCores/steam/ss_03.jpg"), alt: "Gameplay" },
+              { src: img("StoriesFromTheCores/steam/ss_04.jpg"), alt: "Gameplay" },
+              { src: img("StoriesFromTheCores/steam/ss_05.jpg"), alt: "Gameplay" },
+              { src: img("StoriesFromTheCores/steam/ss_06.jpg"), alt: "Gameplay" },
+              { src: img("StoriesFromTheCores/steam/ss_07.jpg"), alt: "Gameplay" },
+              { src: img("StoriesFromTheCores/steam/ss_08.jpg"), alt: "Gameplay" },
+            ]}
+            interval={4000}
+            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Stories — Trailer ── */
+  {
+    id: "stories-trailer",
+    content: (
+      <div className="w-full flex flex-col gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Stories from the Cores &middot; Game Trailer
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <YouTubeEmbed videoId="lwt_ndeOZs4" />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ══════════════════════════════════════
+     STUDENT WORK
+     ══════════════════════════════════════ */
+
+  /* ── 13 · Section: Teaching & Student Work ── */
+  {
+    id: "section-teaching",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-text-secondary/50 tracking-[0.3em] uppercase">
+            02
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <h2 className="text-5xl md:text-6xl font-bold">
+            Teaching &amp; <span className="text-accent">Student Work</span>
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.25}>
+          <div
+            className="w-16 h-[2px] bg-accent mt-2"
+            style={{ boxShadow: "0 0 12px var(--accent-glow)" }}
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── 14 · Student Work Gallery ── */
+  {
+    id: "student-work",
+    content: (
+      <div className="w-full flex flex-col gap-6">
+        <div className="flex flex-col gap-3">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Student Outcomes
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">
+              Mentorship &amp; Student Work
+            </h2>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.2}>
+          <ImageCycler
+            images={[
+              { src: img("StudentWork/evan-sweeney-roybeauty2-2.jpg"), alt: "Evan Sweeney" },
+              { src: img("StudentWork/evan-sweeney-roybeauty4.jpg"), alt: "Evan Sweeney" },
+              { src: img("StudentWork/evan-sweeney-concept-art.jpg"), alt: "Evan Sweeney" },
+              { src: img("StudentWork/evan-sweeney-finalvsconceptart.jpg"), alt: "Evan Sweeney" },
+              { src: img("StudentWork/AnimalWorkstation-noahisaacdavis-noahisaacdavis.webp"), alt: "Noah Isaac Davis" },
+              { src: img("StudentWork/Workstation-noahisaacdavis-noahisaacdavis.webp"), alt: "Noah Isaac Davis" },
+              { src: img("StudentWork/Untitled-1-noahisaacdavis.webp"), alt: "Noah Isaac Davis" },
+              { src: img("StudentWork/Untitled-1-noahisaacdavis (1).webp"), alt: "Noah Isaac Davis" },
+              { src: img("StudentWork/GDCSlidedImages/trey-grabinger-nomad2.jpg"), alt: "Trey Grabinger" },
+              { src: img("StudentWork/GDCSlidedImages/trey-grabinger-nomadmissionaryrendersheet2.jpg"), alt: "Trey Grabinger" },
+              { src: img("StudentWork/GDCSlidedImages/trey-grabinger-nomadmissionarytexturerendersheet5.jpg"), alt: "Trey Grabinger" },
+              { src: img("StudentWork/GDCSlidedImages/trey-grabinger-ewanrendersheet.jpg"), alt: "Trey Grabinger" },
+              { src: img("StudentWork/GDCSlidedImages/trey-grabinger-cargocontainerrendersheet.jpg"), alt: "Trey Grabinger" },
+              { src: img("StudentWork/GDCSlidedImages/trey-grabinger-drifter-boring-normal-overtop.jpg"), alt: "Trey Grabinger" },
+              { src: img("StudentWork/GDCSlidedImages/cameron-dava-mimc-render-art-station.jpg"), alt: "Cameron Dava" },
+              { src: img("StudentWork/GDCSlidedImages/cameron-dava-mimic-pres-board.jpg"), alt: "Cameron Dava" },
+              { src: img("StudentWork/GDCSlidedImages/cameron-dava-closed-egg.jpg"), alt: "Cameron Dava" },
+              { src: img("StudentWork/GDCSlidedImages/cameron-dava-modular-rock-pres-board.jpg"), alt: "Cameron Dava" },
+              { src: img("StudentWork/GDCSlidedImages/cameron-dava-presentation-board-lantern.jpg"), alt: "Cameron Dava" },
+              { src: img("StudentWork/GDCSlidedImages/lauren-smith-architecturalasset.jpg"), alt: "Lauren Smith" },
+              { src: img("StudentWork/GDCSlidedImages/lauren-smith-morsepressheet1.jpg"), alt: "Lauren Smith" },
+              { src: img("StudentWork/GDCSlidedImages/lauren-smith-teslacoilpressheet1.jpg"), alt: "Lauren Smith" },
+              { src: img("StudentWork/GDCSlidedImages/lauren-smith-shelfpressheet.jpg"), alt: "Lauren Smith" },
+              { src: img("StudentWork/GDCSlidedImages/lauren-smith-highresscreenshot00056.jpg"), alt: "Lauren Smith" },
+              { src: img("StudentWork/GDCSlidedImages/christian-turner-color-variants.jpg"), alt: "Christian Turner" },
+              { src: img("StudentWork/GDCSlidedImages/christian-turner-angel-soldier-retopo.jpg"), alt: "Christian Turner" },
+              { src: img("StudentWork/GDCSlidedImages/christian-turner-image0-3.jpg"), alt: "Christian Turner" },
+              { src: img("StudentWork/GDCSlidedImages/austin-lutz-abed-presentation-sheet.jpg"), alt: "Austin Lutz" },
+              { src: img("StudentWork/GDCSlidedImages/austin-lutz-rust-cohle-presentation-sheet.jpg"), alt: "Austin Lutz" },
+              { src: img("StudentWork/GDCSlidedImages/ava-hermann-final.jpg"), alt: "Ava Hermann" },
+              { src: img("StudentWork/GDCSlidedImages/ava-hermann-hermanab-finalproject05.jpg"), alt: "Ava Hermann" },
+              { src: img("StudentWork/GDCSlidedImages/ava-hermann-hermanab-modularrock.jpg"), alt: "Ava Hermann" },
+              { src: img("StudentWork/GDCSlidedImages/brennan-doyle-final-project-1.jpg"), alt: "Brennan Doyle" },
+              { src: img("StudentWork/GDCSlidedImages/brennan-doyle-final-project-2.jpg"), alt: "Brennan Doyle" },
+              { src: img("StudentWork/GDCSlidedImages/brennan-doyle-doylebm-modular-rock-poster.jpg"), alt: "Brennan Doyle" },
+              { src: img("StudentWork/GDCSlidedImages/andrew-barrett-gazebopresentationsheet.jpg"), alt: "Andrew Barrett" },
+              { src: img("StudentWork/GDCSlidedImages/andrew-barrett-rock01pressheet.jpg"), alt: "Andrew Barrett" },
+              { src: img("StudentWork/GDCSlidedImages/lauren-mckenzie-beauty1.jpg"), alt: "Lauren McKenzie" },
+              { src: img("StudentWork/GDCSlidedImages/lauren-mckenzie-texturevariations.jpg"), alt: "Lauren McKenzie" },
+              { src: img("StudentWork/GDCSlidedImages/nelli-ponomareva-final-nelli-rings.jpg"), alt: "Nelli Ponomareva" },
+              { src: img("StudentWork/GDCSlidedImages/sierra-bailey-van-kuren-gourd-lamp.jpg"), alt: "Sierra Bailey Van Kuren" },
+              { src: img("StudentWork/GDCSlidedImages/sierra-bailey-van-kuren-rock-presentation-2.jpg"), alt: "Sierra Bailey Van Kuren" },
+              { src: img("StudentWork/GDCSlidedImages/caulder-bittle-presentation-sheet-1.jpg"), alt: "Caulder Bittle" },
+              { src: img("StudentWork/GDCSlidedImages/cassidy-rayfield-gazebo-final-presentation.jpg"), alt: "Cassidy Rayfield" },
+              { src: img("StudentWork/GDCSlidedImages/presentationBismuth.jpg"), alt: "Student Work" },
+              { src: img("StudentWork/GDCSlidedImages/HANDPRESENTATIONSHEET.jpg"), alt: "Student Work" },
+              { src: img("StudentWork/GDCSlidedImages/WBPresentationHand.jpg"), alt: "Student Work" },
+              { src: img("StudentWork/GDCSlidedImages/ART215-finalprojectpresentationsheet.jpg"), alt: "Student Work" },
+              { src: img("StudentWork/GDCSlidedImages/Modular Rock_Elle Li.jpg"), alt: "Elle Li" },
+              { src: img("StudentWork/GDCSlidedImages/ModularRockAssignment(NL).jpg"), alt: "Student Work" },
+              { src: img("StudentWork/GDCSlidedImages/ModularRockSubmission.png"), alt: "Student Work" },
+              { src: img("StudentWork/GDCSlidedImages/CarouselDesignDoc2.png"), alt: "Student Work" },
+              { src: img("StudentWork/GDCSlidedImages/FootDesignDoc.png"), alt: "Student Work" },
+            ]}
+            interval={4000}
+            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ══════════════════════════════════════
+     CURRENT RESEARCH
+     ══════════════════════════════════════ */
+
+  /* ══════════════════════════════════════
+     CURRENT RESEARCH — INFRASTRUCTURE
+     ══════════════════════════════════════ */
+
+  /* ── Section: Current Research ── */
+  {
+    id: "section-research",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-text-secondary/50 tracking-[0.3em] uppercase">
+            03
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <h2 className="text-5xl md:text-6xl font-bold">
+            Current Creative <span className="text-accent">Research</span>
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.15}>
+          <p className="text-xl text-text-secondary">
+            Infrastructure &amp; Exploration
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.25}>
+          <div
+            className="w-16 h-[2px] bg-accent mt-2"
+            style={{ boxShadow: "0 0 12px var(--accent-glow)" }}
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Research Philosophy ── */
+  {
+    id: "research-philosophy",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Research Philosophy
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.15}>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+            &ldquo;How can AI augment — not replace — the
+            creative process?&rdquo;
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.3}>
+          <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
+            My research sits at the intersection of traditional 3D art pipelines
+            and artificial intelligence. From integrating LLMs into game engines
+            to training custom models and building local AI infrastructure, I
+            investigate how emerging tools can expand what artists and developers
+            are capable of — while keeping the human at the center of the creative
+            process.
+          </p>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Victor Burgin Quote ── */
+  {
+    id: "burgin-quote",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Historical Context
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.15}>
+          <h2 className="text-3xl md:text-4xl font-bold leading-relaxed italic">
+            &ldquo;I was drawn to this technology for much the same
+            reason I first turned to photography — because of its
+            ubiquitous contributions to the everyday environment
+            of images.&rdquo;
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.35}>
+          <p className="text-text-secondary text-lg">
+            — <span className="text-accent">Victor Burgin</span>,{" "}
+            <em>TANK Magazine</em> (2024), on his adoption of game
+            engine software for art-making
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.45}>
+          <a
+            href="https://tank.tv/magazine/issue-98/features/ca-victor-burgin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs text-text-secondary/40 hover:text-accent transition-colors"
+          >
+            tank.tv/magazine/issue-98/features/ca-victor-burgin
+          </a>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Art & Technology Lineage: Paik + Rath ── */
+  {
+    id: "lineage-historical",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Paik */}
+        <div className="flex flex-col gap-4">
+          <AnimateIn>
+            <img
+              src={img("References/paik_kunstpalast_exhibit.jpg")}
+              alt="Nam June Paik — Exhibition"
+              className="w-full rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h3 className="text-2xl font-bold">Nam June Paik</h3>
+            <p className="text-accent text-sm font-mono">1932 – 2006 · Father of Video Art</p>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              First to treat the television as a sculptural medium. From{" "}
+              <em>TV Buddha</em> to <em>Electronic Superhighway</em>, Paik
+              insisted that new media tools demand new artistic vocabularies —
+              the direct philosophical predecessor to today&apos;s Creative AI
+              practice.
+            </p>
+          </AnimateIn>
+        </div>
+        {/* Rath */}
+        <div className="flex flex-col gap-4">
+          <AnimateIn delay={0.1}>
+            <img
+              src={img("References/rath_arecibo_sculpture.jpg")}
+              alt="Alan Rath — Arecibo (1992)"
+              className="max-h-[320px] mx-auto rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <h3 className="text-2xl font-bold">Alan Rath</h3>
+            <p className="text-accent text-sm font-mono">1959 – 2020 · Born in Cincinnati</p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              MIT-trained engineer turned electronic sculptor. Designed custom
+              hardware and wrote non-repeating generative software — an early
+              practitioner of algorithmic art. Showed with Carl Solway Gallery
+              in Cincinnati; work in the Cincinnati Art Museum collection.
+              1991 Whitney Biennial.
+            </p>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── Contemporary Context: Anadol, Chung, Beeple ── */
+  {
+    id: "lineage-contemporary",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        {/* Anadol */}
+        <div className="flex flex-col gap-3">
+          <AnimateIn>
+            <img
+              src={img("References/anadol_unsupervised.jpg")}
+              alt="Refik Anadol — Unsupervised (2022), MoMA"
+              className="w-full aspect-video object-cover rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h3 className="text-xl font-bold">Refik Anadol</h3>
+            <p className="text-accent text-xs font-mono">AI Data Sculptures</p>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              Uses machine learning to transform massive datasets into immersive,
+              large-scale data sculptures. <em>Unsupervised</em> (2022) at MoMA
+              was trained on the museum&apos;s entire collection. Opening
+              DATALAND — the world&apos;s first AI art museum — in 2026.
+            </p>
+          </AnimateIn>
+        </div>
+        {/* Chung */}
+        <div className="flex flex-col gap-3">
+          <AnimateIn delay={0.1}>
+            <img
+              src={img("References/chung_art_and_artifice.jpg")}
+              alt="Sougwen Chung — Drawing with D.O.U.G."
+              className="w-full aspect-video object-cover rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <h3 className="text-xl font-bold">Sougwen Chung</h3>
+            <p className="text-accent text-xs font-mono">Human–AI Collaboration</p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              Paints alongside robotic arms driven by AI trained on their own
+              brushstrokes and biometric data. A decade-long exploration of
+              human–machine co-authorship — collaboration, not replacement.
+            </p>
+          </AnimateIn>
+        </div>
+        {/* Beeple */}
+        <div className="flex flex-col gap-3">
+          <AnimateIn delay={0.2}>
+            <img
+              src={img("References/beeple_everydays.jpg")}
+              alt="Beeple — Everydays"
+              className="w-full aspect-video object-cover rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <h3 className="text-xl font-bold">Beeple</h3>
+            <p className="text-accent text-xs font-mono">Digital Art &amp; the NFT Moment</p>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              <em>Everydays: the First 5000 Days</em> sold at Christie&apos;s
+              for $69.3M in 2021 — the first purely digital NFT artwork at a
+              major auction house. Forced the art world to reckon with digital
+              practice as legitimate art.
+            </p>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── AI & Experimental 3D (Infrastructure context) ── */
+  {
+    id: "current-research",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <img
+            src={img("CurrentResearch/podcast_maxres.jpg")}
+            alt="Unreal Engine + ChatGPT — Matt Board"
+            className="w-full rounded-lg border border-surface-light"
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-6">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              AI &amp; Experimental 3D
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-4xl font-bold leading-tight">
+              OpenAI API in <span className="text-accent">Unreal Engine</span>
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              Integrated the OpenAI API directly into Unreal Engine to explore
+              AI-driven gameplay, procedural dialogue, and intelligent NPC
+              behavior — bridging large language models with real-time 3D
+              environments.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.35}>
+            <div className="flex flex-wrap gap-2">
+              {["OpenAI API", "Unreal Engine", "AI/ML", "Real-time"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── 17 · What is a LoRA? ── */
+  {
+    id: "what-is-lora",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Key Concept
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.15}>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+            What is a <span className="text-accent">LoRA</span>?
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.3}>
+          <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
+            <span className="text-accent font-semibold">LoRA</span> (Low-Rank Adaptation)
+            is a technique that fine-tunes a small set of additional weights
+            on top of a large pre-trained model, allowing you to teach it a
+            specific writing style or domain expertise without retraining the
+            entire network.
+          </p>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── 18 · What is RAG? ── */
+  {
+    id: "what-is-rag",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Key Concept
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.15}>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+            What is <span className="text-accent">RAG</span>?
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.3}>
+          <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
+            <span className="text-accent font-semibold">RAG</span> (Retrieval-Augmented
+            Generation) is a technique where an AI model retrieves relevant
+            documents or data from an external source before generating a
+            response — grounding its output in real, up-to-date information
+            rather than relying solely on its training data.
+          </p>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── 19 · What is a Vector Database? ── */
+  {
+    id: "what-is-vectordb",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Key Concept
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.15}>
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
+            What is a <span className="text-accent">Vector Database</span>?
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.3}>
+          <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
+            A <span className="text-accent font-semibold">vector database</span> stores
+            data as high-dimensional numerical embeddings — mathematical
+            representations of meaning. This allows you to search by
+            similarity rather than exact keywords, powering RAG pipelines,
+            semantic search, and recommendation systems.
+          </p>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── DGX Spark ── */
+  {
+    id: "dgx-spark",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <img
+            src={img("CurrentResearch/dgx_spark.png")}
+            alt="NVIDIA DGX Spark"
+            className="w-full rounded-lg border border-surface-light"
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Hardware
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">
+              NVIDIA <span className="text-accent">DGX Spark</span>
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              A Grace Blackwell desktop AI supercomputer — the same architecture
+              powering data-center AI, shrunk to a compact form factor. About
+              the same cost and power consumption as a gaming computer. Enables
+              local training, fine-tuning, and inference for research and
+              creative workflows without cloud dependency.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.35}>
+            <div className="flex flex-wrap gap-2">
+              {["Grace Blackwell", "128GB", "CUDA", "Local AI", "NVIDIA"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ══════════════════════════════════════
+     CURRENT RESEARCH — EXPLORATION
+     ══════════════════════════════════════ */
+
+  /* ── Article-Gen ── */
+  {
+    id: "article-gen",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <ImageCycler
+            images={[
+              { src: img("CurrentResearch/article_gen_ui.png"), alt: "Article-Gen — Automatic Mode" },
+              { src: img("CurrentResearch/article_gen_custom.png"), alt: "Article-Gen — Custom Prompts" },
+            ]}
+            interval={4000}
+            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              AI Research Tool
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">Article-Gen</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              A multi-modal AI content generation platform that creates
+              professional articles with AI-generated images and publishes
+              them directly to Substack.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <ul className="text-text-secondary text-sm leading-relaxed space-y-2">
+              <li>&bull; Auto-generates articles from trending news topics</li>
+              <li>&bull; Creates 3 contextual images per article via Flux.1-dev</li>
+              <li>&bull; AI image captioning with LLaVA vision model</li>
+              <li>&bull; Custom prompt mode for full creative control</li>
+              <li>&bull; One-click Substack publishing</li>
+              <li>&bull; Fine-tunable writing style via LoRA on Gemma 2 9B</li>
+            </ul>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["Gemma 2 9B", "Flux.1-dev", "LLaVA", "Streamlit", "NVIDIA GPU"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── MAUDE ── */
+  {
+    id: "maude",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col gap-5">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Local AI System
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">
+              <span className="text-accent">MAUDE</span>
+            </h2>
+            <p className="text-text-secondary text-sm font-mono mt-1">
+              Multi-Agent Unified Dispatch Engine
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed">
+              A local AI assistant running entirely on the DGX Spark. MAUDE
+              coordinates multiple specialized models — Nemotron for reasoning,
+              Codestral for code generation, LLaVA for vision, and Gemma for
+              writing — with voice interaction, Telegram integration, and a
+              client/server architecture over Tailscale.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <ul className="text-text-secondary text-sm leading-relaxed space-y-2">
+              <li>&bull; Multi-model routing &amp; sub-agent dispatch</li>
+              <li>&bull; Voice mode with Whisper transcription</li>
+              <li>&bull; RAG-powered memory via vector database</li>
+              <li>&bull; Mac/PC client connects to Spark over Tailscale</li>
+              <li>&bull; Telegram bot for remote access</li>
+              <li>&bull; Fully private — all inference on-device</li>
+            </ul>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["Nemotron", "Codestral", "LLaVA", "Whisper", "Tailscale", "SQLite"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.15}>
+          <ImageCycler
+            images={[
+              { src: img("CurrentResearch/maude_screenshot.png"), alt: "MAUDE Server TUI" },
+              { src: img("CurrentResearch/maude_client_screenshot.png"), alt: "MAUDE Client on Mac" },
+            ]}
+            interval={4000}
+            className="rounded-lg border border-surface-light"
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Tessera ── */
+  {
+    id: "tessera",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <ImageCycler
+            images={[
+              { src: img("CurrentResearch/dashboard.png"), alt: "Tessera — Dashboard" },
+              { src: img("CurrentResearch/paper-detail.png"), alt: "Tessera — Paper Detail" },
+              { src: img("CurrentResearch/collection-synthesis.png"), alt: "Tessera — Literature Synthesis" },
+              { src: img("CurrentResearch/graph.png"), alt: "Tessera — Citation Graph" },
+              { src: img("CurrentResearch/knowledge.png"), alt: "Tessera — Knowledge Base" },
+              { src: img("CurrentResearch/collection-detail.png"), alt: "Tessera — Collection Detail" },
+            ]}
+            interval={4000}
+            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              AI Research Platform
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">Tessera</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              An AI-powered academic literature review platform that searches
+              five major databases, generates structured summaries and
+              cross-paper syntheses, and visualizes citation networks.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <ul className="text-text-secondary text-sm leading-relaxed space-y-2">
+              <li>&bull; Federated search across Semantic Scholar, arXiv, OpenAlex, CrossRef &amp; PubMed</li>
+              <li>&bull; AI-generated paper summaries &amp; literature synthesis</li>
+              <li>&bull; Interactive citation graph with relationship classification</li>
+              <li>&bull; Knowledge extraction — findings, methods, gaps &amp; conclusions</li>
+              <li>&bull; Export as BibTeX, JSON, or a deployable static website</li>
+            </ul>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["Next.js", "React", "SQLite", "LLM", "Semantic Scholar", "arXiv"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── MatForge — Text-to-Material ── */
+  {
+    id: "matforge",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <ImageCycler
+            images={[
+              { src: img("TextToMaterial/01_matforge_ui_overview.png"), alt: "MatForge — UI Overview" },
+              { src: img("TextToMaterial/03_generating_material.png"), alt: "MatForge — Generating" },
+              { src: img("TextToMaterial/04_material_generated.png"), alt: "MatForge — Generated Material" },
+              { src: img("TextToMaterial/05_material_sunset_env.png"), alt: "MatForge — Sunset Environment" },
+            ]}
+            interval={4000}
+            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              AI Material Generation
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">
+              <span className="text-accent">MatForge</span>
+            </h2>
+            <p className="text-text-secondary text-sm font-mono mt-1">
+              Text-to-Material
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              An AI-powered PBR material generation tool that creates complete
+              texture sets from text descriptions. Type &ldquo;weathered copper
+              with green patina&rdquo; and get a full set of game-ready PBR maps
+              — albedo, normal, roughness, metallic, height, and AO — with a
+              real-time 3D preview and one-click Unreal Engine export.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <ul className="text-text-secondary text-sm leading-relaxed space-y-2">
+              <li>&bull; Fine-tuned FLUX.1-dev LoRA for multi-map PBR grid output</li>
+              <li>&bull; 6 PBR maps generated simultaneously from a single prompt</li>
+              <li>&bull; Real-time 3D sphere preview with environment lighting</li>
+              <li>&bull; Seamless tiling post-processing (basic, multi-pass, multi-scale)</li>
+              <li>&bull; Edit mode for iterative refinement via img2img</li>
+              <li>&bull; One-click export for Unreal Engine 5</li>
+            </ul>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["FLUX.1-dev", "LoRA", "React", "Three.js", "FastAPI", "NVIDIA GPU"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── MatForge — PBR Maps ── */
+  {
+    id: "matforge-maps",
+    content: (
+      <div className="w-full flex flex-col gap-6">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            MatForge &middot; PBR Map Output
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <div className="grid grid-cols-4 gap-3 max-w-5xl mx-auto">
+            <div className="flex flex-col gap-2">
+              <img
+                src={img("TextToMaterial/albedo.png")}
+                alt="Albedo Map"
+                className="w-full aspect-square object-cover rounded-lg border border-surface-light"
+              />
+              <p className="text-text-secondary text-xs text-center font-mono">Albedo</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <img
+                src={img("TextToMaterial/normal.png")}
+                alt="Normal Map"
+                className="w-full aspect-square object-cover rounded-lg border border-surface-light"
+              />
+              <p className="text-text-secondary text-xs text-center font-mono">Normal</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <img
+                src={img("TextToMaterial/roughness.png")}
+                alt="Roughness Map"
+                className="w-full aspect-square object-cover rounded-lg border border-surface-light"
+              />
+              <p className="text-text-secondary text-xs text-center font-mono">Roughness</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <img
+                src={img("TextToMaterial/metallic.png")}
+                alt="Metallic Map"
+                className="w-full aspect-square object-cover rounded-lg border border-surface-light"
+              />
+              <p className="text-text-secondary text-xs text-center font-mono">Metallic</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <img
+                src={img("TextToMaterial/height.png")}
+                alt="Height Map"
+                className="w-full aspect-square object-cover rounded-lg border border-surface-light"
+              />
+              <p className="text-text-secondary text-xs text-center font-mono">Height</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <img
+                src={img("TextToMaterial/ao.png")}
+                alt="Ambient Occlusion Map"
+                className="w-full aspect-square object-cover rounded-lg border border-surface-light"
+              />
+              <p className="text-text-secondary text-xs text-center font-mono">AO</p>
+            </div>
+            <div className="flex flex-col gap-2 col-span-2">
+              <img
+                src={img("TextToMaterial/tiled.png")}
+                alt="Tiled Preview"
+                className="w-full aspect-[2/1] object-cover rounded-lg border border-surface-light"
+              />
+              <p className="text-text-secondary text-xs text-center font-mono">Seamless Tiling Preview</p>
+            </div>
+          </div>
+        </AnimateIn>
+        <AnimateIn delay={0.25}>
+          <p className="text-text-secondary text-sm text-center max-w-2xl mx-auto">
+            All 6 PBR maps generated simultaneously from a single text prompt using a fine-tuned FLUX LoRA on the DGX Spark
+          </p>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Input Streamliner — Hero ── */
+  {
+    id: "input-streamliner",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <ImageCycler
+            images={[
+              { src: img("InputStreamliner/model_choice.jpg"), alt: "Input Streamliner — Model Selection" },
+              { src: img("InputStreamliner/ia_settings.jpg"), alt: "Input Streamliner — Generated Assets" },
+              { src: img("InputStreamliner/generated_output.jpg"), alt: "Input Streamliner — Output" },
+            ]}
+            interval={4000}
+            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              UE5 Editor Plugin
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">
+              <span className="text-accent">Input</span> Streamliner
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              An Unreal Engine 5.7 editor plugin that generates complete
+              multiplatform input configurations from natural language
+              descriptions using a local Ollama LLM. Describe your controls
+              conversationally and get a full input system — keyboard, mouse,
+              gamepad, and mobile touch — with one click.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["UE5 C++", "Ollama", "Enhanced Input", "Slate UI", "MIT"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── Input Streamliner — Details ── */
+  {
+    id: "input-streamliner-details",
+    content: (
+      <div className="w-full flex flex-col items-center gap-5">
+        <AnimateIn>
+          <h2 className="text-2xl font-bold text-center">
+            Input Streamliner &mdash; <span className="text-accent">How It Works</span>
+          </h2>
+        </AnimateIn>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl w-full">
+          <AnimateIn delay={0.1}>
+            <div className="rounded-lg border border-surface-light overflow-hidden">
+              <img src={img("InputStreamliner/model_choice.jpg")} alt="Natural language prompt with model picker" className="w-full max-h-[45vh] object-contain" />
+            </div>
+            <p className="text-text-secondary text-xs mt-1.5 text-center">Describe controls in plain English &amp; pick a local LLM</p>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <div className="rounded-lg border border-surface-light overflow-hidden">
+              <img src={img("InputStreamliner/ia_settings.jpg")} alt="Generated input action assets" className="w-full max-h-[45vh] object-contain" />
+            </div>
+            <p className="text-text-secondary text-xs mt-1.5 text-center">Input Actions generated with bindings &amp; settings configured</p>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.3}>
+          <ul className="text-text-secondary text-xs leading-relaxed space-y-1 max-w-2xl">
+            <li>&bull; Multiplatform — PC, gamepad, Mac, iOS, Android</li>
+            <li>&bull; Mobile touch — virtual joysticks, swipe zones, gesture detection</li>
+            <li>&bull; Auto-configured dead zones, triggers &amp; axis modifiers</li>
+            <li>&bull; Runtime rebinding with JSON persistence &amp; conflict detection</li>
+          </ul>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── DataTable Streamliner — Hero ── */
+  {
+    id: "datatable-streamliner",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <ImageCycler
+            images={[
+              { src: img("DataTableStreamliner/screen_with_prompt.png"), alt: "DataTable Streamliner — Prompt" },
+              { src: img("DataTableStreamliner/data_preview.png"), alt: "DataTable Streamliner — Data Preview" },
+              { src: img("DataTableStreamliner/generated_assets.png"), alt: "DataTable Streamliner — Generated Assets" },
+              { src: img("DataTableStreamliner/struct_options.png"), alt: "DataTable Streamliner — Struct Options" },
+            ]}
+            interval={4000}
+            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              UE5 Editor Plugin
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">
+              <span className="text-accent">DataTable</span> Streamliner
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              An Unreal Engine 5.7 editor plugin that generates fully populated
+              DataTable assets from natural language descriptions using a local
+              Ollama LLM. Describe your data — &ldquo;12 fantasy weapons with
+              name, damage, weight, and rarity&rdquo; — and get a complete
+              DataTable with AI-defined or existing struct schemas.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["UE5 C++", "Ollama", "DataTables", "Slate UI", "MIT"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── DataTable Streamliner — Details ── */
+  {
+    id: "datatable-streamliner-details",
+    content: (
+      <div className="w-full flex flex-col items-center gap-8">
+        <AnimateIn>
+          <h2 className="text-3xl font-bold text-center">
+            DataTable Streamliner &mdash; <span className="text-accent">How It Works</span>
+          </h2>
+        </AnimateIn>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
+          <AnimateIn delay={0.1}>
+            <div className="rounded-lg border border-surface-light overflow-hidden">
+              <img src={img("DataTableStreamliner/data_preview.png")} alt="Data preview table" className="w-full" />
+            </div>
+            <p className="text-text-secondary text-sm mt-2 text-center">Preview generated rows before committing to an asset</p>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <div className="rounded-lg border border-surface-light overflow-hidden">
+              <img src={img("DataTableStreamliner/appending_overwriting.png")} alt="Append and overwrite options" className="w-full" />
+            </div>
+            <p className="text-text-secondary text-sm mt-2 text-center">Append to existing DataTables with conflict resolution</p>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.3}>
+          <ul className="text-text-secondary text-sm leading-relaxed space-y-2 max-w-2xl">
+            <li>&bull; AI-defined or existing struct — let the LLM create a schema or use any UScriptStruct</li>
+            <li>&bull; Data preview — review rows in a table before generating the asset</li>
+            <li>&bull; Append mode — add rows to existing tables with overwrite or merge options</li>
+            <li>&bull; Runs entirely local via Ollama — no API keys or cloud dependency</li>
+          </ul>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Stillion-AI ── */
+  {
+    id: "stillion-ai",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <ImageCycler
+            images={[
+              { src: img("CurrentResearch/stillion_ui.png"), alt: "Stillion-AI — Status" },
+              { src: img("CurrentResearch/stillion_caption.png"), alt: "Stillion-AI — Auto-Caption" },
+              { src: img("CurrentResearch/stillion_train.png"), alt: "Stillion-AI — Train LoRA" },
+              { src: img("CurrentResearch/stillion_generate.png"), alt: "Stillion-AI — Generate" },
+            ]}
+            interval={4000}
+            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              AI Art Pipeline
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">Stillion-AI</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              A custom LoRA training pipeline for FLUX.1-dev that lets artists
+              teach an image generation model their own visual style using as
+              few as 20 reference images.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <ul className="text-text-secondary text-sm leading-relaxed space-y-2">
+              <li>&bull; 3-step workflow: Auto-Caption, Train, Generate</li>
+              <li>&bull; LLaVA 1.5 7B auto-captioning for training images</li>
+              <li>&bull; Trains custom LoRA weights on FLUX.1-dev</li>
+              <li>&bull; Trigger-word activated style generation</li>
+              <li>&bull; Gradio web interface — runs locally on NVIDIA GPU</li>
+            </ul>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["FLUX.1-dev", "LoRA", "LLaVA", "Gradio", "NVIDIA GPU"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── Stillion-AI — Generated Samples ── */
+  {
+    id: "stillion-samples",
+    content: (
+      <div className="w-full flex flex-col gap-6">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Stillion-AI &middot; Generated Samples
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <div className="grid grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <img
+              src={img("CurrentResearch/stillion_gen_1.jpg")}
+              alt="Stillion-AI — Stone face with flowers"
+              className="w-full rounded-lg border border-surface-light"
+            />
+            <img
+              src={img("CurrentResearch/stillion_gen_2.jpg")}
+              alt="Stillion-AI — Bird on vase with flowers"
+              className="w-full rounded-lg border border-surface-light"
+            />
+          </div>
+        </AnimateIn>
+        <AnimateIn delay={0.25}>
+          <p className="text-text-secondary text-sm text-center max-w-2xl mx-auto">
+            Images generated live on the DGX Spark using the trained Stillion LoRA on FLUX.1-dev
+          </p>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Thank You ── */
+  {
+    id: "thanks",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-6">
+        <AnimateIn>
+          <h2 className="text-5xl md:text-6xl font-bold">Thank You</h2>
+        </AnimateIn>
+        <AnimateIn delay={0.15}>
+          <div
+            className="w-24 h-[2px] bg-accent mx-auto"
+            style={{ boxShadow: "0 0 12px var(--accent-glow)" }}
+          />
+        </AnimateIn>
+        <AnimateIn delay={0.3}>
+          <p className="text-xl text-text-secondary">
+            your.email@email.com &middot; yourwebsite.com
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.4}>
+          <p className="text-lg text-accent mt-4">Questions?</p>
+        </AnimateIn>
+      </div>
+    ),
+  },
+];
+
+/* ═══════════════════════════════════════════════════════════ */
 
 export default function Home() {
+  useMouseParallax();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main>
+      <Background3D />
+      <CustomCursor />
+      <Presentation slides={slides} />
+    </main>
   );
 }
