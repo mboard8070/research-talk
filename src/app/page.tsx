@@ -6,6 +6,7 @@ import Presentation, {
   SlideData,
 } from "@/components/Presentation";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
+import VerticalVideoPlayer from "@/components/VerticalVideoPlayer";
 import NeuralNetwork from "@/components/NeuralNetwork";
 import CustomCursor from "@/components/CustomCursor";
 import GlitchText from "@/components/GlitchText";
@@ -674,6 +675,73 @@ const slides: SlideData[] = [
     ),
   },
 
+  /* ── Necessary Illusions — Hero ── */
+  {
+    id: "necessary-illusions",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col gap-5">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              SPRING/BREAK Art Show &middot; Los Angeles
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">Necessary Illusions</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed">
+              First collaboration between Stillion &amp; Board after six years
+              working together, exhibited at Skylight Culver City in February 2022.
+              Stillion&apos;s paintings of face jugs, poppies &amp; houseflies evoke
+              decomposition and the animation of inanimate objects &mdash; referencing
+              African American pottery from 19th-century South Carolina. Board&apos;s
+              custom software manipulates and animates the imagery through code &amp;
+              algorithm. Featured in the &ldquo;HEARSAY:HERESY&rdquo; themed exhibition
+              alongside 50+ curated shows.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <div className="flex flex-wrap gap-2">
+              {["Painting", "Custom Software", "Interactive", "Installation"].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.15}>
+          <img
+            src={img("StoriesFromTheCores/necessary_illusions.jpg")}
+            alt="Necessary Illusions — SPRING/BREAK Art Show LA"
+            className="w-full max-h-[calc(100vh-160px)] object-contain rounded-lg border border-surface-light"
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Stories — Vertical Video ── */
+  {
+    id: "stories-vertical-video",
+    content: (
+      <div className="w-full flex flex-col items-center gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Stories from the Cores &middot; Gameplay
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <VerticalVideoPlayer videoId="rVOwZSsl1b0" title="Stories from the Cores — Gameplay" />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
   /* ══════════════════════════════════════
      STUDENT WORK
      ══════════════════════════════════════ */
@@ -780,6 +848,18 @@ const slides: SlideData[] = [
             interval={4000}
             className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
           />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── 14b · Student Work Video ── */
+  {
+    id: "student-work-video",
+    content: (
+      <div className="w-full flex flex-col gap-4">
+        <AnimateIn delay={0.1}>
+          <YouTubeEmbed videoId="wSDnGw4yCCI" title="Student Work Video" />
         </AnimateIn>
       </div>
     ),
@@ -940,6 +1020,61 @@ const slides: SlideData[] = [
               practitioner of algorithmic art. Showed with Carl Solway Gallery
               in Cincinnati; work in the Cincinnati Art Museum collection.
               1991 Whitney Biennial.
+            </p>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── Concept Design Lineage: Mead + Robertson ── */
+  {
+    id: "lineage-mead-robertson",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Syd Mead */}
+        <div className="flex flex-col gap-4">
+          <AnimateIn>
+            <img
+              src={img("References/syd_mead_gouache.jpg")}
+              alt="Syd Mead — Honda concept gouache rendering"
+              className="w-full rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h3 className="text-2xl font-bold">Syd Mead</h3>
+            <p className="text-accent text-sm font-mono">1933 – 2019 · Visual Futurist</p>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              Coined the title &ldquo;Visual Futurist.&rdquo; Concept designer for{" "}
+              <em>Blade Runner</em>, <em>Tron</em>, and <em>Aliens</em>. His
+              industrial-design approach to imaginary worlds — &ldquo;reality
+              ahead of schedule&rdquo; — established the modern concept-art
+              pipeline used across film, games, and automotive design.
+            </p>
+          </AnimateIn>
+        </div>
+        {/* Scott Robertson */}
+        <div className="flex flex-col gap-4">
+          <AnimateIn delay={0.1}>
+            <img
+              src={img("References/scott_robertson_hauler.jpg")}
+              alt="Scott Robertson — Sci-Fi Hauler concept"
+              className="w-full rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <h3 className="text-2xl font-bold">Scott Robertson</h3>
+            <p className="text-accent text-sm font-mono">Concept &amp; Industrial Designer</p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              Art Center grad who chaired the Entertainment Design department.
+              Authored 11 books including <em>How to Draw</em> and{" "}
+              <em>How to Render</em>. Clients include BMW, Nike, and Mattel;
+              film credits on <em>Minority Report</em>. Founded Design Studio
+              Press, shaping a generation of concept artists.
             </p>
           </AnimateIn>
         </div>
@@ -1332,6 +1467,152 @@ const slides: SlideData[] = [
             interval={4000}
             className="rounded-lg border border-surface-light"
           />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── MAUDE Mobile — Hero ── */
+  {
+    id: "maude-mobile",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col gap-5">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Mobile Companion
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">
+              <span className="text-accent">MAUDE</span> Mobile
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed">
+              A native Android companion app that connects to MAUDE on the DGX
+              Spark over Tailscale. Provides full voice chat, text conversation,
+              SSH terminal, file management, and a built-in web browser — all
+              routed through a single gateway on port 30000.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <p className="text-text-secondary leading-relaxed">
+              The retro 80s Amber CRT theme shown here is one of three
+              selectable themes. The app is built with React, Ionic Capacitor,
+              and Tailwind CSS — a single TypeScript codebase compiled as a
+              native APK.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["React", "Capacitor", "Tailwind", "WebSocket", "Mistral", "PersonaPlex"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.15}>
+          <div className="flex justify-center gap-4">
+            {[
+              { src: img("CurrentResearch/maude_mobile_home.png"), alt: "MAUDE Mobile — Home Screen" },
+              { src: img("CurrentResearch/maude_mobile_voice.png"), alt: "MAUDE Mobile — Voice Chat" },
+              { src: img("CurrentResearch/maude_mobile_settings.png"), alt: "MAUDE Mobile — Settings" },
+            ].map((image) => (
+              <img
+                key={image.alt}
+                src={image.src}
+                alt={image.alt}
+                className="h-[480px] w-auto rounded-lg border border-surface-light shadow-lg"
+              />
+            ))}
+          </div>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── MAUDE Mobile — How It Works ── */
+  {
+    id: "maude-mobile-details",
+    content: (
+      <div className="w-full flex flex-col gap-8 max-w-4xl mx-auto">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            How It Works
+          </p>
+          <h2 className="text-3xl font-bold mt-2">
+            <span className="text-accent">MAUDE</span> Mobile — Architecture
+          </h2>
+        </AnimateIn>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <AnimateIn delay={0.1}>
+            <div className="bg-surface-light rounded-lg p-5 border border-surface-light h-full">
+              <h3 className="text-accent font-mono text-sm font-bold mb-2">Voice Chat</h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                Full-duplex voice conversation via PersonaPlex. Opus-encoded
+                audio streams over WebSocket with scheduled-playback buffering
+                for click-free audio on mobile. Supports camera capture during
+                calls — LLaVA analyzes the photo and the voice session
+                reconnects with image context injected into the prompt.
+              </p>
+            </div>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <div className="bg-surface-light rounded-lg p-5 border border-surface-light h-full">
+              <h3 className="text-accent font-mono text-sm font-bold mb-2">Gateway Proxy</h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                A single Python HTTP server on port 30000 routes all traffic:
+                multi-model LLM requests (Mistral, Codestral, Nemotron, LLaVA),
+                WebSocket proxying for terminal and voice, file upload/download,
+                image analysis via the <code className="text-accent">/api/analyze-image</code> endpoint,
+                and static PWA hosting. SSL with a self-signed cert for secure mobile access.
+              </p>
+            </div>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <div className="bg-surface-light rounded-lg p-5 border border-surface-light h-full">
+              <h3 className="text-accent font-mono text-sm font-bold mb-2">Mobile Features</h3>
+              <p className="text-text-secondary text-sm leading-relaxed">
+                Seven modules in one app: AI chat with tool execution,
+                voice calls with live waveform visualization, SSH terminal
+                (xterm.js over WebSocket PTY), web browser proxied through
+                the Spark, Telegram message viewer, shared file manager
+                with camera upload, and a settings panel with theme switching
+                and model selection.
+              </p>
+            </div>
+          </AnimateIn>
+        </div>
+
+        <AnimateIn delay={0.4}>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {[
+              "Capacitor APK",
+              "Opus Codec",
+              "WebSocket PTY",
+              "LLaVA Vision",
+              "PersonaPlex Voice",
+              "Tailscale VPN",
+              "Multi-Model Routing",
+              "Camera → LLM",
+            ].map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </AnimateIn>
       </div>
     ),
@@ -1821,6 +2102,175 @@ const slides: SlideData[] = [
             Images generated live on the DGX Spark using the trained Stillion LoRA on FLUX.1-dev
           </p>
         </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Machina Prima — Hero ── */
+  {
+    id: "machina-prima-gallery",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              { src: img("MachinaPrima/generated/02_sculpture_hall.png"), alt: "Sculpture Hall" },
+              { src: img("MachinaPrima/generated/04_suspended_installation.png"), alt: "Suspended Installation" },
+              { src: img("MachinaPrima/generated/06_projection_room.png"), alt: "Projection Room" },
+              { src: img("MachinaPrima/generated/09_centerpiece.png"), alt: "Centerpiece" },
+            ].map((image) => (
+              <img
+                key={image.alt}
+                src={image.src}
+                alt={image.alt}
+                className="w-full rounded border border-surface-light object-cover aspect-square"
+              />
+            ))}
+          </div>
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              LoRA Art Generation
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">Machina Prima</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              An exhibit concept series generated using a custom marker-mech LoRA
+              trained on 15 hand-drawn mechanical sketches. The model learned the
+              marker rendering style and was prompted to envision spaces for a
+              futuristic art exhibition — from gallery entrances and sculpture
+              halls to immersive projection rooms.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.35}>
+            <div className="flex flex-wrap gap-2">
+              {["FLUX.1-dev", "LoRA", "Marker Style", "Exhibit Concept"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── Machina Prima — Sketch vs Generated Comparison ── */
+  {
+    id: "machina-prima-comparison",
+    content: (
+      <div className="w-full flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Machina Prima
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">Training Data vs Output</h2>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.15}>
+          <div className="max-w-3xl mx-auto">
+            <p className="font-mono text-xs text-text-secondary/50 uppercase tracking-wider text-center mb-2">Training Data</p>
+            <div className="grid grid-cols-4 gap-2">
+              {[
+                { src: img("MachinaPrima/sketches/IMG_3485.jpeg"), alt: "Sketch 1" },
+                { src: img("MachinaPrima/sketches/IMG_3494.jpeg"), alt: "Sketch 2" },
+                { src: img("MachinaPrima/sketches/IMG_3497.jpeg"), alt: "Sketch 3" },
+                { src: img("MachinaPrima/sketches/IMG_3501.jpeg"), alt: "Sketch 4" },
+              ].map((image) => (
+                <img key={image.alt} src={image.src} alt={image.alt} className="w-full rounded border border-surface-light object-cover aspect-square" />
+              ))}
+            </div>
+          </div>
+        </AnimateIn>
+        <AnimateIn delay={0.25}>
+          <div className="max-w-3xl mx-auto">
+            <p className="font-mono text-xs text-text-secondary/50 uppercase tracking-wider text-center mb-2">Generated Output</p>
+            <div className="grid grid-cols-4 gap-2">
+              {[
+                { src: img("MachinaPrima/generated/02_sculpture_hall.png"), alt: "Generated 1" },
+                { src: img("MachinaPrima/generated/04_suspended_installation.png"), alt: "Generated 2" },
+                { src: img("MachinaPrima/generated/06_projection_room.png"), alt: "Generated 3" },
+                { src: img("MachinaPrima/generated/09_centerpiece.png"), alt: "Generated 4" },
+              ].map((image) => (
+                <img key={image.alt} src={image.src} alt={image.alt} className="w-full rounded border border-surface-light object-cover aspect-square" />
+              ))}
+            </div>
+          </div>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Spatia — Intelligent Environment Generator ── */
+  {
+    id: "spatia",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <AnimateIn>
+          <ImageCycler
+            images={[
+              { src: img("Spatia/spatia_main.png"), alt: "Spatia — Single Image Input" },
+              { src: img("Spatia/spatia_multi_image.png"), alt: "Spatia — Multi-Image Input" },
+              { src: img("Spatia/spatia_text_prompt.png"), alt: "Spatia — Text Prompt" },
+            ]}
+            interval={4000}
+            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
+          />
+        </AnimateIn>
+        <div className="flex flex-col gap-5">
+          <AnimateIn delay={0.1}>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              3D Environment Tool
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h2 className="text-3xl font-bold">Spatia</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.25}>
+            <p className="text-text-secondary leading-relaxed">
+              A frontend for the World Labs Marble API that generates
+              photorealistic 3D Gaussian splats from images or text prompts,
+              with direct Unreal Engine export.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <ul className="text-text-secondary text-sm leading-relaxed space-y-2">
+              <li>&bull; Single image, multi-view, or text prompt input</li>
+              <li>&bull; Multi-image with per-view azimuth angles (0°–270°)</li>
+              <li>&bull; Draft (~30s) and Professional (~5min) quality tiers</li>
+              <li>&bull; Exports SPZ/PLY splats, collision mesh GLB, 360° HDRI</li>
+              <li>&bull; Built-in 3D splat viewer via React Three Fiber</li>
+              <li>&bull; One-click Unreal Engine 5 export guide</li>
+            </ul>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["Next.js", "World Labs API", "Gaussian Splats", "React Three Fiber", "UE5 Export"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
       </div>
     ),
   },
