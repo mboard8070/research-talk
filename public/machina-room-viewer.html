@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Machina Prima — Room Viewer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a14; overflow: hidden; font-family: 'Courier New', monospace; }
+    canvas { display: block; width: 100vw; height: 100vh; }
+
+    #loading {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; background: #0a0a14; z-index: 100;
+    }
+    #loading h1 { color: #a78bfa; font-size: 24px; margin-bottom: 20px; }
+    #loading-bar-bg { width: 300px; height: 4px; background: #1e1e2e; border-radius: 2px; }
+    #loading-bar { width: 0%; height: 100%; background: #a78bfa; border-radius: 2px; transition: width 0.3s; }
+    #loading-text { color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 10px; }
+
+    #room-label {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      color: #a78bfa; font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
+      background: rgba(10,10,20,0.7); padding: 8px 20px; border-radius: 4px;
+      border: 1px solid rgba(167,139,250,0.3); backdrop-filter: blur(8px);
+    }
+    #controls {
+      position: fixed; bottom: 16px; left: 16px;
+      color: rgba(255,255,255,0.4); font-size: 11px; line-height: 1.8;
+    }
+    #speed-display {
+      position: fixed; bottom: 16px; right: 16px;
+      color: rgba(255,255,255,0.4); font-size: 11px;
+    }
+  </style>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.178.0/three.module.js",
+      "@sparkjsdev/spark": "https://sparkjs.dev/releases/spark/0.1.10/spark.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div id="loading">
+    <h1>MACHINA PRIMA</h1>
+    <div id="loading-bar-bg"><div id="loading-bar"></div></div>
+    <div id="loading-text">Initializing...</div>
+  </div>
+
+  <div id="room-label"></div>
+
+  <div id="controls">
+    WASD — move &bull; QE — up/down<br>
+    Mouse drag — look &bull; Scroll — speed<br>
+    Shift — boost
+  </div>
+  <div id="speed-display">Speed: 1.0x</div>
+
+  <script type="module">
+    import * as THREE from "three";
+    import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
+
+    // --- Read room name from query param ---
+    const params = new URLSearchParams(window.location.search);
+    const roomName = params.get("room") || "Projection Room";
+
+    // --- Load manifest and find the room ---
+    const manifest = await fetch("/machina_level_manifest.json").then(r => r.json());
+    const PROXY = (url) => `/api/proxy?url=${encodeURIComponent(url)}`;
+    const entry = manifest.splats.find(s => s.name === roomName);
+
+    if (!entry) {
+      document.getElementById("loading-text").textContent = `Room "${roomName}" not found`;
+      throw new Error(`Room "${roomName}" not found in manifest`);
+    }
+
+    document.getElementById("room-label").textContent = entry.name;
+
+    // --- Renderer ---
+    const renderer = new THREE.WebGLRenderer({ antialias: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x0a0a14, 1);
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.01, 500);
+    camera.position.set(0, 0.5, 0);
+    scene.add(camera);
+
+    const spark = new SparkRenderer({ renderer });
+    camera.add(spark);
+
+    scene.add(new THREE.AmbientLight(0x404060, 0.3));
+
+    // --- Fly controls ---
+    const keys = {};
+    let moveSpeed = 1.5;
+    const euler = new THREE.Euler(0, 0, 0, "YXZ");
+    let isPointerDown = false;
+    const prevPointer = { x: 0, y: 0 };
+    const mouseSensitivity = 0.003;
+    const clock = new THREE.Clock();
+
+    document.addEventListener("keydown", (e) => { keys[e.code] = true; });
+    document.addEventListener("keyup", (e) => { keys[e.code] = false; });
+
+    renderer.domElement.addEventListener("mousedown", (e) => {
+      isPointerDown = true;
+      prevPointer.x = e.clientX;
+      prevPointer.y = e.clientY;
+    });
+    document.addEventListener("mouseup", () => { isPointerDown = false; });
+    document.addEventListener("mousemove", (e) => {
+      if (!isPointerDown) return;
+      const dx = e.clientX - prevPointer.x;
+      const dy = e.clientY - prevPointer.y;
+      prevPointer.x = e.clientX;
+      prevPointer.y = e.clientY;
+      euler.setFromQuaternion(camera.quaternion);
+      euler.y -= dx * mouseSensitivity;
+      euler.x -= dy * mouseSensitivity;
+      euler.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, euler.x));
+      camera.quaternion.setFromEuler(euler);
+    });
+
+    renderer.domElement.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      moveSpeed *= e.deltaY > 0 ? 0.85 : 1.18;
+      moveSpeed = Math.max(0.1, Math.min(20, moveSpeed));
+      document.getElementById("speed-display").textContent = `Speed: ${moveSpeed.toFixed(1)}x`;
+    }, { passive: false });
+
+    // --- Reveal effect (lightweight, no custom shaders) ---
+    // Animates SplatMesh opacity + scale uniforms. Virtually zero GPU cost.
+    const REVEAL_DURATION = 2.5;
+    let revealElapsed = 0;
+    let revealDone = false;
+    let revealStarted = false;
+    const startScale = 0.3;  // begin at 30% size
+    function easeOutCubic(x) { return 1 - Math.pow(1 - x, 3); }
+
+    // --- Load single splat ---
+    const loadingBar = document.getElementById("loading-bar");
+    const loadingText = document.getElementById("loading-text");
+    const loadingScreen = document.getElementById("loading");
+
+    const isLocal = !!entry.cleanedSpzUrl;
+    const url = isLocal ? entry.cleanedSpzUrl : (entry.spzUrl500k || entry.spzUrl);
+    loadingText.textContent = `Loading ${entry.name}...`;
+
+    const splat = new SplatMesh({
+      url: isLocal ? url : PROXY(url),
+      onLoad: () => {
+        loadingBar.style.width = "100%";
+        loadingText.textContent = "Ready";
+
+        // Start invisible and small immediately
+        splat.opacity = 0;
+        splat.scale.setScalar(normalizedScale * startScale);
+
+        // Hide loading screen, then start the reveal on the next frame
+        loadingScreen.style.display = "none";
+        requestAnimationFrame(() => { revealStarted = true; });
+      }
+    });
+
+    // Center the splat at origin
+    splat.position.set(0, 0, 0);
+    splat.quaternion.set(1, 0, 0, 0); // OpenCV -> OpenGL
+
+    const avgScale = 1.35;
+    const normalizedScale = avgScale / (entry.scaleFactor || 1.0);
+    splat.scale.setScalar(normalizedScale);
+
+    scene.add(splat);
+
+    // --- Resize ---
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // --- Animation loop ---
+    const direction = new THREE.Vector3();
+    renderer.setAnimationLoop(() => {
+      const delta = clock.getDelta();
+      const boost = keys["ShiftLeft"] || keys["ShiftRight"] ? 3.0 : 1.0;
+      const speed = moveSpeed * boost * delta;
+
+      // Advance reveal animation (only after loading screen is gone)
+      if (revealStarted && !revealDone) {
+        revealElapsed += delta;
+        const t = Math.min(revealElapsed / REVEAL_DURATION, 1.0);
+        const p = easeOutCubic(t);
+        splat.opacity = p;
+        splat.scale.setScalar(normalizedScale * (startScale + (1 - startScale) * p));
+        if (t >= 1.0) revealDone = true;
+      }
+
+      direction.set(0, 0, 0);
+      if (keys["KeyW"] || keys["ArrowUp"])    direction.z -= 1;
+      if (keys["KeyS"] || keys["ArrowDown"])  direction.z += 1;
+      if (keys["KeyA"] || keys["ArrowLeft"])  direction.x -= 1;
+      if (keys["KeyD"] || keys["ArrowRight"]) direction.x += 1;
+      if (keys["KeyQ"])                       direction.y -= 1;
+      if (keys["KeyE"])                       direction.y += 1;
+
+      if (direction.lengthSq() > 0) {
+        direction.normalize();
+        const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
+        const right = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
+        const up = new THREE.Vector3(0, 1, 0);
+        camera.position.addScaledVector(forward, -direction.z * speed);
+        camera.position.addScaledVector(right, direction.x * speed);
+        camera.position.addScaledVector(up, direction.y * speed);
+      }
+
+      renderer.render(scene, camera);
+    });
+  </script>
+</body>
+</html>

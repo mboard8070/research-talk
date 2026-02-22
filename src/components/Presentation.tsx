@@ -97,6 +97,9 @@ export default function Presentation({ slides }: PresentationProps) {
   /* Keyboard navigation */
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't intercept keys when an iframe has focus (e.g. live demo)
+      if (document.activeElement?.tagName === "IFRAME") return;
+
       switch (e.key) {
         case "ArrowRight":
         case " ":

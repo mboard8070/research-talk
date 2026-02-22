@@ -758,7 +758,7 @@ const slides: SlideData[] = [
         </AnimateIn>
         <AnimateIn delay={0.1}>
           <h2 className="text-5xl md:text-6xl font-bold">
-            Teaching &amp; <span className="text-accent">Student Work</span>
+            <span className="text-accent">Student Work</span>
           </h2>
         </AnimateIn>
         <AnimateIn delay={0.25}>
@@ -1082,11 +1082,11 @@ const slides: SlideData[] = [
     ),
   },
 
-  /* ── Contemporary Context: Anadol, Chung, Beeple ── */
+  /* ── Contemporary Context: Anadol, Chung ── */
   {
     id: "lineage-contemporary",
     content: (
-      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* Anadol */}
         <div className="flex flex-col gap-3">
           <AnimateIn>
@@ -1127,28 +1127,6 @@ const slides: SlideData[] = [
               Paints alongside robotic arms driven by AI trained on their own
               brushstrokes and biometric data. A decade-long exploration of
               human–machine co-authorship — collaboration, not replacement.
-            </p>
-          </AnimateIn>
-        </div>
-        {/* Beeple */}
-        <div className="flex flex-col gap-3">
-          <AnimateIn delay={0.2}>
-            <img
-              src={img("References/beeple_everydays.jpg")}
-              alt="Beeple — Everydays"
-              className="w-full aspect-video object-cover rounded-lg border border-surface-light"
-            />
-          </AnimateIn>
-          <AnimateIn delay={0.3}>
-            <h3 className="text-xl font-bold">Beeple</h3>
-            <p className="text-accent text-xs font-mono">Digital Art &amp; the NFT Moment</p>
-          </AnimateIn>
-          <AnimateIn delay={0.4}>
-            <p className="text-text-secondary leading-relaxed text-sm">
-              <em>Everydays: the First 5000 Days</em> sold at Christie&apos;s
-              for $69.3M in 2021 — the first purely digital NFT artwork at a
-              major auction house. Forced the art world to reckon with digital
-              practice as legitimate art.
             </p>
           </AnimateIn>
         </div>
@@ -2275,28 +2253,262 @@ const slides: SlideData[] = [
     ),
   },
 
-  /* ── Thank You ── */
+  /* ── Machina Prima — Gaussian Splat Level ── */
+  {
+    id: "machina-splats",
+    content: (
+      <div className="w-full flex flex-col gap-5">
+        <div className="flex flex-col gap-3">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Machina Prima + Spatia
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">3D Gaussian Splat Level</h2>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed max-w-2xl">
+              11 rooms generated from LoRA concept art, each converted into a
+              pro-quality Gaussian splat via the World Labs API, then
+              auto-cleaned to remove floaters, ghost splats, and blob artifacts.
+            </p>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.3}>
+          <div className="grid grid-cols-4 md:grid-cols-6 gap-2 max-w-4xl mx-auto">
+            {[
+              { src: img("MachinaPrima/splats/01_sculpture_hall_thumb.webp"), label: "Sculpture Hall" },
+              { src: img("MachinaPrima/splats/02_suspended_installation_thumb.webp"), label: "Suspended Installation" },
+              { src: img("MachinaPrima/splats/03_projection_room_thumb.webp"), label: "Projection Room" },
+              { src: img("MachinaPrima/splats/04_rotunda_centerpiece_thumb.webp"), label: "Rotunda" },
+              { src: img("MachinaPrima/splats/05_grand_entrance_thumb.webp"), label: "Grand Entrance" },
+              { src: img("MachinaPrima/splats/06_west_corridor_thumb.webp"), label: "West Corridor" },
+              { src: img("MachinaPrima/splats/07_east_corridor_thumb.webp"), label: "East Corridor" },
+              { src: img("MachinaPrima/splats/08_observation_deck_thumb.webp"), label: "Observation Deck" },
+              { src: img("MachinaPrima/splats/09_underground_vault_thumb.webp"), label: "Underground Vault" },
+              { src: img("MachinaPrima/splats/10_assembly_hall_thumb.webp"), label: "Assembly Hall" },
+              { src: img("MachinaPrima/splats/11_archive_room_thumb.webp"), label: "Archive Room" },
+            ].map((room) => (
+              <div key={room.label} className="flex flex-col items-center gap-1">
+                <img
+                  src={room.src}
+                  alt={room.label}
+                  className="w-full rounded border border-surface-light object-cover aspect-square"
+                />
+                <span className="text-[10px] text-text-secondary/60 font-mono leading-tight text-center">
+                  {room.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </AnimateIn>
+        <AnimateIn delay={0.4}>
+          <div className="flex flex-wrap gap-2">
+            {["22M Gaussians", "11 Rooms", "Auto-Cleanup", "~5% Artifacts Removed", "SparkJS"].map(
+              (tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                >
+                  {tag}
+                </span>
+              )
+            )}
+          </div>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Machina Prima — Panoramic Highlights ── */
+  {
+    id: "machina-splats-panos",
+    content: (
+      <div className="w-full flex flex-col gap-5">
+        <div className="flex flex-col gap-3">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Machina Prima
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">360° Panoramic Renders</h2>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+            {[
+              { src: img("MachinaPrima/splats/05_grand_entrance_pano.png"), label: "Grand Entrance" },
+              { src: img("MachinaPrima/splats/01_sculpture_hall_pano.png"), label: "Sculpture Hall" },
+              { src: img("MachinaPrima/splats/08_observation_deck_pano.png"), label: "Observation Deck" },
+              { src: img("MachinaPrima/splats/09_underground_vault_pano.png"), label: "Underground Vault" },
+            ].map((room) => (
+              <div key={room.label} className="flex flex-col gap-1">
+                <img
+                  src={room.src}
+                  alt={room.label}
+                  className="w-full rounded-lg border border-surface-light object-cover"
+                  style={{ aspectRatio: "2 / 1" }}
+                />
+                <span className="font-mono text-xs text-text-secondary/50 uppercase tracking-wider text-center">
+                  {room.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Machina Prima — Projection Room ── */
+  {
+    id: "machina-splat-projection",
+    content: (
+      <div className="w-full flex flex-col gap-3">
+        <div className="flex items-center justify-between">
+          <AnimateIn>
+            <div className="flex flex-col gap-1">
+              <p className="font-mono text-sm text-accent tracking-wider uppercase">
+                Machina Prima
+              </p>
+              <h2 className="text-2xl font-bold">Projection Room</h2>
+            </div>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <p className="text-text-secondary/50 text-xs font-mono">
+              Click to interact &middot; WASD move &middot; Mouse drag to look
+            </p>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.2}>
+          <iframe
+            src="/machina-room-viewer.html?room=Projection+Room"
+            className="w-full border-0 rounded-lg border border-surface-light"
+            style={{ height: "calc(100vh - 180px)" }}
+            allow="accelerometer; autoplay"
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Machina Prima — Observation Deck ── */
+  {
+    id: "machina-splat-observation",
+    content: (
+      <div className="w-full flex flex-col gap-3">
+        <div className="flex items-center justify-between">
+          <AnimateIn>
+            <div className="flex flex-col gap-1">
+              <p className="font-mono text-sm text-accent tracking-wider uppercase">
+                Machina Prima
+              </p>
+              <h2 className="text-2xl font-bold">Observation Deck</h2>
+            </div>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <p className="text-text-secondary/50 text-xs font-mono">
+              Click to interact &middot; WASD move &middot; Mouse drag to look
+            </p>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.2}>
+          <iframe
+            src="/machina-room-viewer.html?room=Observation+Deck"
+            className="w-full border-0 rounded-lg border border-surface-light"
+            style={{ height: "calc(100vh - 180px)" }}
+            allow="accelerometer; autoplay"
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Machina Prima — Rotunda Centerpiece ── */
+  {
+    id: "machina-splat-rotunda",
+    content: (
+      <div className="w-full flex flex-col gap-3">
+        <div className="flex items-center justify-between">
+          <AnimateIn>
+            <div className="flex flex-col gap-1">
+              <p className="font-mono text-sm text-accent tracking-wider uppercase">
+                Machina Prima
+              </p>
+              <h2 className="text-2xl font-bold">Rotunda Centerpiece</h2>
+            </div>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <p className="text-text-secondary/50 text-xs font-mono">
+              Click to interact &middot; WASD move &middot; Mouse drag to look
+            </p>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.2}>
+          <iframe
+            src="/machina-room-viewer.html?room=Rotunda+Centerpiece"
+            className="w-full border-0 rounded-lg border border-surface-light"
+            style={{ height: "calc(100vh - 180px)" }}
+            allow="accelerometer; autoplay"
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Thank You (mirrors title slide) ── */
   {
     id: "thanks",
     content: (
       <div className="w-full flex flex-col items-center justify-center text-center gap-6">
-        <AnimateIn>
-          <h2 className="text-5xl md:text-6xl font-bold">Thank You</h2>
-        </AnimateIn>
-        <AnimateIn delay={0.15}>
-          <div
-            className="w-24 h-[2px] bg-accent mx-auto"
-            style={{ boxShadow: "0 0 12px var(--accent-glow)" }}
-          />
-        </AnimateIn>
-        <AnimateIn delay={0.3}>
-          <p className="text-xl text-text-secondary">
-            your.email@email.com &middot; yourwebsite.com
-          </p>
-        </AnimateIn>
-        <AnimateIn delay={0.4}>
-          <p className="text-lg text-accent mt-4">Questions?</p>
-        </AnimateIn>
+        <NeuralNetwork />
+        <div
+          className="fixed inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55) 100%)",
+            zIndex: 2,
+          }}
+        />
+        <div className="relative z-10 flex flex-col items-center justify-center text-center gap-6">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-[0.3em] uppercase parallax-subtle">
+              DAAP &middot; School of Art &middot; Games &amp; Animation
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.15}>
+            <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-tight parallax-strong">
+              <GlitchText>Matthew Board, MFA</GlitchText>
+            </h1>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <div
+              className="w-24 h-[2px] bg-accent mx-auto parallax-medium"
+              style={{ boxShadow: "0 0 12px var(--accent-glow)" }}
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <p className="text-xl text-text-secondary max-w-2xl leading-relaxed parallax-medium">
+              <RotatingWords
+                words={[
+                  "Technical Artist",
+                  "Indie Developer",
+                  "Modeling & Animation",
+                  "Researcher",
+                  "Educator",
+                ]}
+                interval={2800}
+              />
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.55}>
+            <p className="font-mono text-xs text-text-secondary/50 mt-6 parallax-subtle">
+              Assistant Professor of Games &amp; Animation
+            </p>
+          </AnimateIn>
+        </div>
       </div>
     ),
   },
