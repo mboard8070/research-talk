@@ -542,7 +542,7 @@ const slides: SlideData[] = [
           </p>
         </AnimateIn>
         <AnimateIn delay={0.1}>
-          <YouTubeEmbed videoId="kAY_Dq0bipA" />
+          <YouTubeEmbed videoId="isFH9XxmE2o" />
         </AnimateIn>
       </div>
     ),
