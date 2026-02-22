@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[[headers]]
+  for = "/splats_cleaned/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/machina-room-viewer.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

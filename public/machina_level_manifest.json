@@ -1,0 +1,202 @@
+{
+  "splats": [
+    {
+      "name": "Sculpture Hall",
+      "gridPos": [
+        1,
+        0
+      ],
+      "worldId": "5e5f8d11-1e03-40c5-8808-ddcd8e517b9e",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/5e5f8d11-1e03-40c5-8808-ddcd8e517b9e/2fab755e-010a-4afd-a5c5-f09a342a8362_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/5e5f8d11-1e03-40c5-8808-ddcd8e517b9e/572cb688-01d1-45d6-80ec-5c66326ea402_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/5e5f8d11-1e03-40c5-8808-ddcd8e517b9e/d34f71c6-b2f0-426a-9676-c10e2ab9658d_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/5e5f8d11-1e03-40c5-8808-ddcd8e517b9e/0f937610-ae31-4650-8794-427e5918f44a_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/5e5f8d11-1e03-40c5-8808-ddcd8e517b9e/a56b1ae2-bc34-458b-8155-e1ae06c1b5fe_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/5e5f8d11-1e03-40c5-8808-ddcd8e517b9e/c7ff62e4.glb",
+      "scaleFactor": 1.3455036,
+      "groundPlaneOffset": 0.8710183,
+      "marbleUrl": "https://marble.worldlabs.ai/world/5e5f8d11-1e03-40c5-8808-ddcd8e517b9e",
+      "cleanedSpzUrl": "/splats_cleaned/01_sculpture_hall.spz"
+    },
+    {
+      "name": "Suspended Installation",
+      "gridPos": [
+        0,
+        -1
+      ],
+      "worldId": "fe3d39fb-0cac-4da5-aedd-a81e6a0cd73b",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/fe3d39fb-0cac-4da5-aedd-a81e6a0cd73b/d0d48055-3e22-4908-9698-047502e3e840_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/fe3d39fb-0cac-4da5-aedd-a81e6a0cd73b/8fdf8985-ce85-4aca-93d2-0d938f2a097b_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/fe3d39fb-0cac-4da5-aedd-a81e6a0cd73b/543fb316-9697-4208-90c9-0f1f63b06a3d_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/fe3d39fb-0cac-4da5-aedd-a81e6a0cd73b/99b1b330-fd92-4815-954e-c3183bb1b106_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/fe3d39fb-0cac-4da5-aedd-a81e6a0cd73b/d0509fd0-e0c7-42ce-8492-7067f92b522b_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/fe3d39fb-0cac-4da5-aedd-a81e6a0cd73b/15db1cb3.glb",
+      "scaleFactor": 1.186742,
+      "groundPlaneOffset": 2.0686958,
+      "marbleUrl": "https://marble.worldlabs.ai/world/fe3d39fb-0cac-4da5-aedd-a81e6a0cd73b",
+      "cleanedSpzUrl": "/splats_cleaned/02_suspended_installation.spz"
+    },
+    {
+      "name": "Projection Room",
+      "gridPos": [
+        2,
+        -1
+      ],
+      "worldId": "922bc497-ed37-497b-a22e-c06d1aa1f7b1",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/922bc497-ed37-497b-a22e-c06d1aa1f7b1/d366bef2-a783-4fc9-8005-0bfafa44ec70_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/922bc497-ed37-497b-a22e-c06d1aa1f7b1/6f5225c2-7ea5-40d2-a7c5-a43b7321a42d_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/922bc497-ed37-497b-a22e-c06d1aa1f7b1/ddc8ae58-ec17-4ab5-ac96-7a2b65c437fd_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/922bc497-ed37-497b-a22e-c06d1aa1f7b1/91bfb8a5-5216-4cb1-a7ce-8148581ad8ef_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/922bc497-ed37-497b-a22e-c06d1aa1f7b1/d08d7df1-457e-430f-ae40-50f6acbe431d_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/922bc497-ed37-497b-a22e-c06d1aa1f7b1/b855f393.glb",
+      "scaleFactor": 1.8914208,
+      "groundPlaneOffset": 1.0945266,
+      "marbleUrl": "https://marble.worldlabs.ai/world/922bc497-ed37-497b-a22e-c06d1aa1f7b1",
+      "cleanedSpzUrl": "/splats_cleaned/03_projection_room.spz"
+    },
+    {
+      "name": "Rotunda Centerpiece",
+      "gridPos": [
+        1,
+        1
+      ],
+      "worldId": "9ebdf23a-e662-48c2-89e4-05a3d976a529",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/9ebdf23a-e662-48c2-89e4-05a3d976a529/f4314097-0b4d-47d9-baff-1600bd2f87fc_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/9ebdf23a-e662-48c2-89e4-05a3d976a529/35225fdb-8ebe-44cb-bef4-a0af6c022beb_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/9ebdf23a-e662-48c2-89e4-05a3d976a529/d4cf23b8-3e2d-463e-a99c-a2244ab63bac_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/9ebdf23a-e662-48c2-89e4-05a3d976a529/b0e8e154-ad49-4138-914d-c3c8280a0862_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/9ebdf23a-e662-48c2-89e4-05a3d976a529/702c706f-d8f6-4d58-ac38-a073561ae78d_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/9ebdf23a-e662-48c2-89e4-05a3d976a529/767e9fde.glb",
+      "scaleFactor": 1.4328082,
+      "groundPlaneOffset": 0.8681777,
+      "marbleUrl": "https://marble.worldlabs.ai/world/9ebdf23a-e662-48c2-89e4-05a3d976a529",
+      "cleanedSpzUrl": "/splats_cleaned/04_rotunda_centerpiece.spz"
+    },
+    {
+      "name": "Grand Entrance",
+      "gridPos": [
+        0,
+        0
+      ],
+      "worldId": "d666e8c2-00cb-4e0e-b7bb-cdeb0dbc68d4",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/d666e8c2-00cb-4e0e-b7bb-cdeb0dbc68d4/5a1e12f8-af94-46de-bbd9-6520d7c49c98_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/d666e8c2-00cb-4e0e-b7bb-cdeb0dbc68d4/6195868c-7226-4b2b-b504-1d861819cb29_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/d666e8c2-00cb-4e0e-b7bb-cdeb0dbc68d4/7907a3c0-9048-4a03-a887-4d0ffec2125e_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/d666e8c2-00cb-4e0e-b7bb-cdeb0dbc68d4/af4f848d-dbc3-4f8f-bfa9-ff19254e45fc_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/d666e8c2-00cb-4e0e-b7bb-cdeb0dbc68d4/b52c7ccb-5b43-4e0e-9517-c6c6a24e9447_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/d666e8c2-00cb-4e0e-b7bb-cdeb0dbc68d4/eac47ddb.glb",
+      "scaleFactor": 1.0184768,
+      "groundPlaneOffset": 0.34197468,
+      "marbleUrl": "https://marble.worldlabs.ai/world/d666e8c2-00cb-4e0e-b7bb-cdeb0dbc68d4",
+      "cleanedSpzUrl": "/splats_cleaned/05_grand_entrance.spz"
+    },
+    {
+      "name": "West Corridor",
+      "gridPos": [
+        0,
+        1
+      ],
+      "worldId": "e3c25e0b-adec-499c-94d0-ddc31956855e",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/e3c25e0b-adec-499c-94d0-ddc31956855e/486e77f4-9b0d-4ce5-af3a-ebd9a0c5885b_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/e3c25e0b-adec-499c-94d0-ddc31956855e/798e9610-d8b8-4438-ae66-426d8e0885c8_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/e3c25e0b-adec-499c-94d0-ddc31956855e/63a52ff2-da92-43f1-9611-127fc8d7bed8_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/e3c25e0b-adec-499c-94d0-ddc31956855e/d80ca414-6f01-4f77-a4b2-fd31f70715b7_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/e3c25e0b-adec-499c-94d0-ddc31956855e/4ddcc423-0a16-4229-88b9-322cb71410a1_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/e3c25e0b-adec-499c-94d0-ddc31956855e/5fb4bef2.glb",
+      "scaleFactor": 1.3318342,
+      "groundPlaneOffset": 1.092029,
+      "marbleUrl": "https://marble.worldlabs.ai/world/e3c25e0b-adec-499c-94d0-ddc31956855e",
+      "cleanedSpzUrl": "/splats_cleaned/06_west_corridor.spz"
+    },
+    {
+      "name": "East Corridor",
+      "gridPos": [
+        2,
+        1
+      ],
+      "worldId": "b69b2cc7-5f78-4a13-9f21-06962f0966cc",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/b69b2cc7-5f78-4a13-9f21-06962f0966cc/e095a75d-6c0c-45ef-9dc5-5653773aad46_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/b69b2cc7-5f78-4a13-9f21-06962f0966cc/01d5a1cf-20e7-4b21-88d9-4a63c9e79c35_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/b69b2cc7-5f78-4a13-9f21-06962f0966cc/01165518-edec-4dda-b4ef-6cb89b199020_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/b69b2cc7-5f78-4a13-9f21-06962f0966cc/346dd61e-7a1c-44b9-8b39-db034417fff1_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/b69b2cc7-5f78-4a13-9f21-06962f0966cc/35cfe4d7-2356-4e7b-893a-9bfdc3767c09_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/b69b2cc7-5f78-4a13-9f21-06962f0966cc/3bba4b49.glb",
+      "scaleFactor": 1.2043504,
+      "groundPlaneOffset": 0.7183055,
+      "marbleUrl": "https://marble.worldlabs.ai/world/b69b2cc7-5f78-4a13-9f21-06962f0966cc",
+      "cleanedSpzUrl": "/splats_cleaned/07_east_corridor.spz"
+    },
+    {
+      "name": "Observation Deck",
+      "gridPos": [
+        1,
+        2
+      ],
+      "worldId": "e847c2a2-67ff-472d-b8a6-c64d05c48e2e",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/e847c2a2-67ff-472d-b8a6-c64d05c48e2e/28ffdc6e-9025-468b-a312-c15d9deef472_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/e847c2a2-67ff-472d-b8a6-c64d05c48e2e/1281385a-e2a0-4d10-83a5-0eec2e13284f_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/e847c2a2-67ff-472d-b8a6-c64d05c48e2e/4c41f879-b13d-4ad6-a284-878429493158_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/e847c2a2-67ff-472d-b8a6-c64d05c48e2e/41b0e91d-ca5b-4540-aa68-154619d28815_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/e847c2a2-67ff-472d-b8a6-c64d05c48e2e/6426b727-6e2c-4ae2-b7e8-f2f28bfa1b51_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/e847c2a2-67ff-472d-b8a6-c64d05c48e2e/98cbcde6.glb",
+      "scaleFactor": 1.2420931,
+      "groundPlaneOffset": 0.8868042,
+      "marbleUrl": "https://marble.worldlabs.ai/world/e847c2a2-67ff-472d-b8a6-c64d05c48e2e",
+      "cleanedSpzUrl": "/splats_cleaned/08_observation_deck.spz"
+    },
+    {
+      "name": "Underground Vault",
+      "gridPos": [
+        1,
+        -1
+      ],
+      "worldId": "301c94bb-e0ba-4100-9198-a6c603ca7ed8",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/301c94bb-e0ba-4100-9198-a6c603ca7ed8/676a734a-509e-4aef-a507-186027702b53_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/301c94bb-e0ba-4100-9198-a6c603ca7ed8/1f228d5a-bf92-4a3c-b81c-452a50509870_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/301c94bb-e0ba-4100-9198-a6c603ca7ed8/c26e7b2d-0055-4c25-a22c-adcbdb6f9018_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/301c94bb-e0ba-4100-9198-a6c603ca7ed8/daced45f-38ee-4774-82bf-3db125f9c7ac_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/301c94bb-e0ba-4100-9198-a6c603ca7ed8/6426f17b-3f7d-4412-96e9-3584360655bb_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/301c94bb-e0ba-4100-9198-a6c603ca7ed8/f861f0b6.glb",
+      "scaleFactor": 1.61744,
+      "groundPlaneOffset": 1.1855397,
+      "marbleUrl": "https://marble.worldlabs.ai/world/301c94bb-e0ba-4100-9198-a6c603ca7ed8",
+      "cleanedSpzUrl": "/splats_cleaned/09_underground_vault.spz"
+    },
+    {
+      "name": "Assembly Hall",
+      "gridPos": [
+        2,
+        0
+      ],
+      "worldId": "4f9ab153-d847-4fae-86ef-a27d11e67a36",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/4f9ab153-d847-4fae-86ef-a27d11e67a36/560e25d2-85f1-4745-9aab-f29342210427_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/4f9ab153-d847-4fae-86ef-a27d11e67a36/6cb2ce7a-1464-41d2-ae91-6e0ead51653e_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/4f9ab153-d847-4fae-86ef-a27d11e67a36/19dd4f2b-cf05-411b-a2f0-8babc2d99c83_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/4f9ab153-d847-4fae-86ef-a27d11e67a36/eddd1719-9fa0-47d6-94da-e5907434ddf8_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/4f9ab153-d847-4fae-86ef-a27d11e67a36/eb48ccaf-5bbe-4fbf-82a1-64c264e4bdc1_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/4f9ab153-d847-4fae-86ef-a27d11e67a36/79e979b5.glb",
+      "scaleFactor": 1.5311427,
+      "groundPlaneOffset": 0.96858126,
+      "marbleUrl": "https://marble.worldlabs.ai/world/4f9ab153-d847-4fae-86ef-a27d11e67a36",
+      "cleanedSpzUrl": "/splats_cleaned/10_assembly_hall.spz"
+    },
+    {
+      "name": "Archive Room",
+      "gridPos": [
+        0,
+        2
+      ],
+      "worldId": "2c737eca-8f2a-4e06-b338-4fd39fbfb841",
+      "spzUrl": "https://cdn.marble.worldlabs.ai/2c737eca-8f2a-4e06-b338-4fd39fbfb841/23a3a863-7adc-43ec-8935-56ab53c5fae1_ceramic.spz",
+      "spzUrl500k": "https://cdn.marble.worldlabs.ai/2c737eca-8f2a-4e06-b338-4fd39fbfb841/14c2edc2-0250-4ffd-a34e-ed7cafd3d67d_ceramic_500k.spz",
+      "spzUrl100k": "https://cdn.marble.worldlabs.ai/2c737eca-8f2a-4e06-b338-4fd39fbfb841/feae88ba-233c-48dc-bb4d-ed1445fcd728_dust_100k.spz",
+      "thumbnailUrl": "https://cdn.marble.worldlabs.ai/2c737eca-8f2a-4e06-b338-4fd39fbfb841/4c8d8912-f1e1-4c89-bc47-73f3671910c2_dust_mpi/thumbnail.webp",
+      "panoUrl": "https://cdn.marble.worldlabs.ai/2c737eca-8f2a-4e06-b338-4fd39fbfb841/9f8cf36d-7aea-4df1-98c4-21eb42c49d90_panos/rgb_0.png",
+      "meshUrl": "https://cdn.marble.worldlabs.ai/2c737eca-8f2a-4e06-b338-4fd39fbfb841/a3e5e923.glb",
+      "scaleFactor": 1.2872056,
+      "groundPlaneOffset": 1.2697486,
+      "marbleUrl": "https://marble.worldlabs.ai/world/2c737eca-8f2a-4e06-b338-4fd39fbfb841",
+      "cleanedSpzUrl": "/splats_cleaned/11_archive_room.spz"
+    }
+  ]
+}
