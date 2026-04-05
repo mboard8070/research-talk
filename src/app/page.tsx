@@ -941,69 +941,6 @@ const slides: SlideData[] = [
     ),
   },
 
-  /* ══════════════════════════════════════
-     GLOW SWIM
-     ══════════════════════════════════════ */
-
-  /* ── Glow Swim — Hero ── */
-  {
-    id: "glow-swim",
-    content: (
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="flex flex-col gap-5">
-          <AnimateIn>
-            <p className="font-mono text-sm text-accent tracking-wider uppercase">
-              iOS Game Prototype
-            </p>
-          </AnimateIn>
-          <AnimateIn delay={0.1}>
-            <h2 className="text-3xl font-bold">
-              <span className="text-accent">Glow</span> Swim
-            </h2>
-          </AnimateIn>
-          <AnimateIn delay={0.2}>
-            <p className="text-text-secondary leading-relaxed">
-              An early prototype for a bioluminescent underwater game built
-              with SpriteKit. Players guide a glowing jellyfish through
-              deep-sea environments, collecting orbs and avoiding hazards
-              across procedurally lit levels.
-            </p>
-          </AnimateIn>
-          <AnimateIn delay={0.3}>
-            <div className="flex flex-wrap gap-2">
-              {["SpriteKit", "Swift", "iOS", "Prototype"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
-                  >
-                    {tag}
-                  </span>
-                )
-              )}
-            </div>
-          </AnimateIn>
-        </div>
-        <AnimateIn delay={0.15}>
-          <div className="flex justify-center gap-4">
-            {[
-              { src: img("GlowSwim/GlowSwimScreens/glowswim_01.png"), alt: "Glow Swim — Title Screen" },
-              { src: img("GlowSwim/GlowSwimScreens/glowswim_02.png"), alt: "Glow Swim — Gameplay" },
-              { src: img("GlowSwim/GlowSwimScreens/glowswim_04.png"), alt: "Glow Swim — Gameplay" },
-            ].map((image) => (
-              <img
-                key={image.alt}
-                src={image.src}
-                alt={image.alt}
-                className="h-[480px] w-auto rounded-lg border border-surface-light shadow-lg"
-              />
-            ))}
-          </div>
-        </AnimateIn>
-      </div>
-    ),
-  },
-
   /* ── Stillion & Board — AI-Generated Work ── */
   {
     id: "stillion-board-art",
@@ -1062,6 +999,69 @@ const slides: SlideData[] = [
               alt="Stillion & Board — Bird on vase with poppies"
               className="w-full rounded-lg border border-surface-light"
             />
+          </div>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ══════════════════════════════════════
+     GLOW SWIM
+     ══════════════════════════════════════ */
+
+  /* ── Glow Swim — Hero ── */
+  {
+    id: "glow-swim",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col gap-5">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              iOS Game Prototype
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">
+              <span className="text-accent">Glow</span> Swim
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed">
+              An early prototype for a bioluminescent underwater game built
+              with SpriteKit. Players guide a glowing jellyfish through
+              deep-sea environments, collecting orbs and avoiding hazards
+              across procedurally lit levels.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <div className="flex flex-wrap gap-2">
+              {["SpriteKit", "Swift", "iOS", "Prototype"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.15}>
+          <div className="flex justify-center gap-4">
+            {[
+              { src: img("GlowSwim/GlowSwimScreens/glowswim_01.png"), alt: "Glow Swim — Title Screen" },
+              { src: img("GlowSwim/GlowSwimScreens/glowswim_02.png"), alt: "Glow Swim — Gameplay" },
+              { src: img("GlowSwim/GlowSwimScreens/glowswim_04.png"), alt: "Glow Swim — Gameplay" },
+            ].map((image) => (
+              <img
+                key={image.alt}
+                src={image.src}
+                alt={image.alt}
+                className="h-[480px] w-auto rounded-lg border border-surface-light shadow-lg"
+              />
+            ))}
           </div>
         </AnimateIn>
       </div>
