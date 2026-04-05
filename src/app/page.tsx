@@ -11,7 +11,6 @@ import NeuralNetwork from "@/components/NeuralNetwork";
 import CustomCursor from "@/components/CustomCursor";
 import GlitchText from "@/components/GlitchText";
 import RotatingWords from "@/components/RotatingWords";
-import ImageCycler from "@/components/ImageCycler";
 import StudentWorkGallery from "@/components/StudentWorkGallery";
 import { useEffect } from "react";
 
@@ -509,7 +508,7 @@ const slides: SlideData[] = [
           </p>
         </AnimateIn>
         <AnimateIn delay={0.1}>
-          <ImageCycler
+          <StudentWorkGallery
             images={[
               { src: img("Astronaut/NoMakeUp.jpg"), alt: "No Makeup" },
               { src: img("Astronaut/MakeupPass.jpg"), alt: "Makeup Pass" },
@@ -529,8 +528,6 @@ const slides: SlideData[] = [
               { src: img("Astronaut/LightRig.jpg"), alt: "UE5 Light Rig" },
               { src: img("Astronaut/FullBody.jpg"), alt: "Full Body" },
             ]}
-            interval={4000}
-            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
           />
         </AnimateIn>
       </div>
@@ -602,7 +599,7 @@ const slides: SlideData[] = [
           </p>
         </AnimateIn>
         <AnimateIn delay={0.1}>
-          <ImageCycler
+          <StudentWorkGallery
             images={[
               { src: img("IggyPop/IggyZBrush.jpg"), alt: "ZBrush Sculpt" },
               { src: img("IggyPop/IggyXGen.jpg"), alt: "XGen Hair" },
@@ -611,8 +608,6 @@ const slides: SlideData[] = [
               { src: img("IggyPop/IggyTorso.jpg"), alt: "Torso Detail" },
               { src: img("IggyPop/IggyRefSheet.jpg"), alt: "Reference Sheet" },
             ]}
-            interval={4000}
-            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
           />
         </AnimateIn>
       </div>
@@ -736,7 +731,7 @@ const slides: SlideData[] = [
           </p>
         </AnimateIn>
         <AnimateIn delay={0.1}>
-          <ImageCycler
+          <StudentWorkGallery
             images={[
               { src: img("KamodoSteve/bear.jpg"), alt: "Bear Character" },
               { src: img("KamodoSteve/BearFurShader.jpg"), alt: "Bear Fur Shader" },
@@ -748,8 +743,6 @@ const slides: SlideData[] = [
               { src: img("KamodoSteve/MushroomTexture.jpg"), alt: "Mushroom Texture" },
               { src: img("KamodoSteve/JadeTexture.jpg"), alt: "Jade Texture" },
             ]}
-            interval={4000}
-            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
           />
         </AnimateIn>
       </div>
@@ -858,7 +851,7 @@ const slides: SlideData[] = [
           </p>
         </AnimateIn>
         <AnimateIn delay={0.1}>
-          <ImageCycler
+          <StudentWorkGallery
             images={[
               { src: img("StoriesFromTheCores/ColumbiaMammot.jpg"), alt: "Columbian Mammoth" },
               { src: img("StoriesFromTheCores/MammothSculpt.jpg"), alt: "Mammoth Sculpt" },
@@ -875,8 +868,6 @@ const slides: SlideData[] = [
               { src: img("StoriesFromTheCores/steam/ss_07.jpg"), alt: "Gameplay" },
               { src: img("StoriesFromTheCores/steam/ss_08.jpg"), alt: "Gameplay" },
             ]}
-            interval={4000}
-            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
           />
         </AnimateIn>
       </div>
@@ -1228,13 +1219,12 @@ const slides: SlideData[] = [
     content: (
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <AnimateIn>
-          <ImageCycler
+          <StudentWorkGallery
+            columns={2}
             images={[
               { src: img("CurrentResearch/article_gen_ui.png"), alt: "Article-Gen — Automatic Mode" },
               { src: img("CurrentResearch/article_gen_custom.png"), alt: "Article-Gen — Custom Prompts" },
             ]}
-            interval={4000}
-            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
           />
         </AnimateIn>
         <div className="flex flex-col gap-5">
@@ -1336,13 +1326,12 @@ const slides: SlideData[] = [
           </AnimateIn>
         </div>
         <AnimateIn delay={0.15}>
-          <ImageCycler
+          <StudentWorkGallery
+            columns={2}
             images={[
               { src: img("CurrentResearch/maude_screenshot.png"), alt: "MAUDE Server TUI" },
               { src: img("CurrentResearch/maude_client_screenshot.png"), alt: "MAUDE Client on Mac" },
             ]}
-            interval={4000}
-            className="rounded-lg border border-surface-light"
           />
         </AnimateIn>
       </div>
@@ -1501,7 +1490,8 @@ const slides: SlideData[] = [
     content: (
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <AnimateIn>
-          <ImageCycler
+          <StudentWorkGallery
+            columns={2}
             images={[
               { src: img("CurrentResearch/dashboard.png"), alt: "Tessera — Dashboard" },
               { src: img("CurrentResearch/paper-detail.png"), alt: "Tessera — Paper Detail" },
@@ -1510,8 +1500,6 @@ const slides: SlideData[] = [
               { src: img("CurrentResearch/knowledge.png"), alt: "Tessera — Knowledge Base" },
               { src: img("CurrentResearch/collection-detail.png"), alt: "Tessera — Collection Detail" },
             ]}
-            interval={4000}
-            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
           />
         </AnimateIn>
         <div className="flex flex-col gap-5">
@@ -1564,15 +1552,14 @@ const slides: SlideData[] = [
     content: (
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <AnimateIn>
-          <ImageCycler
+          <StudentWorkGallery
+            columns={2}
             images={[
               { src: img("TextToMaterial/01_matforge_ui_overview.png"), alt: "MatForge — UI Overview" },
               { src: img("TextToMaterial/03_generating_material.png"), alt: "MatForge — Generating" },
               { src: img("TextToMaterial/04_material_generated.png"), alt: "MatForge — Generated Material" },
               { src: img("TextToMaterial/05_material_sunset_env.png"), alt: "MatForge — Sunset Environment" },
             ]}
-            interval={4000}
-            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
           />
         </AnimateIn>
         <div className="flex flex-col gap-5">
@@ -1712,14 +1699,13 @@ const slides: SlideData[] = [
     content: (
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <AnimateIn>
-          <ImageCycler
+          <StudentWorkGallery
+            columns={2}
             images={[
               { src: img("InputStreamliner/model_choice.jpg"), alt: "Input Streamliner — Model Selection" },
               { src: img("InputStreamliner/ia_settings.jpg"), alt: "Input Streamliner — Generated Assets" },
               { src: img("InputStreamliner/generated_output.jpg"), alt: "Input Streamliner — Output" },
             ]}
-            interval={4000}
-            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
           />
         </AnimateIn>
         <div className="flex flex-col gap-5">
@@ -1803,15 +1789,14 @@ const slides: SlideData[] = [
     content: (
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <AnimateIn>
-          <ImageCycler
+          <StudentWorkGallery
+            columns={2}
             images={[
               { src: img("DataTableStreamliner/screen_with_prompt.png"), alt: "DataTable Streamliner — Prompt" },
               { src: img("DataTableStreamliner/data_preview.png"), alt: "DataTable Streamliner — Data Preview" },
               { src: img("DataTableStreamliner/generated_assets.png"), alt: "DataTable Streamliner — Generated Assets" },
               { src: img("DataTableStreamliner/struct_options.png"), alt: "DataTable Streamliner — Struct Options" },
             ]}
-            interval={4000}
-            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
           />
         </AnimateIn>
         <div className="flex flex-col gap-5">
@@ -1895,15 +1880,14 @@ const slides: SlideData[] = [
     content: (
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <AnimateIn>
-          <ImageCycler
+          <StudentWorkGallery
+            columns={2}
             images={[
               { src: img("CurrentResearch/stillion_ui.png"), alt: "Stillion-AI — Status" },
               { src: img("CurrentResearch/stillion_caption.png"), alt: "Stillion-AI — Auto-Caption" },
               { src: img("CurrentResearch/stillion_train.png"), alt: "Stillion-AI — Train LoRA" },
               { src: img("CurrentResearch/stillion_generate.png"), alt: "Stillion-AI — Generate" },
             ]}
-            interval={4000}
-            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
           />
         </AnimateIn>
         <div className="flex flex-col gap-5">
@@ -2097,14 +2081,13 @@ const slides: SlideData[] = [
     content: (
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <AnimateIn>
-          <ImageCycler
+          <StudentWorkGallery
+            columns={2}
             images={[
               { src: img("Spatia/spatia_main.png"), alt: "Spatia — Single Image Input" },
               { src: img("Spatia/spatia_multi_image.png"), alt: "Spatia — Multi-Image Input" },
               { src: img("Spatia/spatia_text_prompt.png"), alt: "Spatia — Text Prompt" },
             ]}
-            interval={4000}
-            className="rounded-lg border border-surface-light mx-auto" style={{ width: "calc(100% - 40px)" }}
           />
         </AnimateIn>
         <div className="flex flex-col gap-5">

@@ -5,11 +5,20 @@ import { AnimatePresence, motion } from "framer-motion";
 
 interface StudentWorkGalleryProps {
   images: { src: string; alt: string }[];
+  columns?: 2 | 3 | 4 | 5;
   className?: string;
 }
 
+const colsClass = {
+  2: "grid-cols-2",
+  3: "grid-cols-3",
+  4: "grid-cols-4 lg:grid-cols-5",
+  5: "grid-cols-4 lg:grid-cols-5",
+} as const;
+
 export default function StudentWorkGallery({
   images,
+  columns = 4,
   className = "",
 }: StudentWorkGalleryProps) {
   const [selected, setSelected] = useState<number | null>(null);
@@ -58,7 +67,7 @@ export default function StudentWorkGallery({
         className={`overflow-y-auto overflow-x-hidden pr-2 ${className}`}
         style={{ maxHeight: "calc(100vh - 280px)" }}
       >
-        <div className="grid grid-cols-4 lg:grid-cols-5 gap-2">
+        <div className={`grid ${colsClass[columns]} gap-2`}>
           {images.map((image, i) => (
             <button
               key={i}
