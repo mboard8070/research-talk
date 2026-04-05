@@ -1004,6 +1004,70 @@ const slides: SlideData[] = [
     ),
   },
 
+  /* ── Stillion & Board — AI-Generated Work ── */
+  {
+    id: "stillion-board-art",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="flex flex-col gap-5">
+          <AnimateIn>
+            <p className="font-mono text-sm text-accent tracking-wider uppercase">
+              Stillion &amp; Board
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h2 className="text-3xl font-bold">
+              AI-Generated <span className="text-accent">Art</span>
+            </h2>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed">
+              Continuing the Stillion &amp; Board collaboration with AI as a
+              new medium. A custom LoRA trained on Stillion&apos;s paintings
+              generates new compositions that carry forward the poppies,
+              face jugs, and housefly imagery — blending the artist&apos;s
+              hand with machine interpretation.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <p className="text-accent leading-relaxed font-semibold">
+              Opening April 23, 2026 at the Contemporary Arts Center,
+              Cincinnati.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={0.4}>
+            <div className="flex flex-wrap gap-2">
+              {["FLUX.1-dev", "LoRA", "DGX Spark", "Collaboration"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
+                  >
+                    {tag}
+                  </span>
+                )
+              )}
+            </div>
+          </AnimateIn>
+        </div>
+        <AnimateIn delay={0.15}>
+          <div className="grid grid-cols-1 gap-4">
+            <img
+              src={img("CurrentResearch/stillion_gen_1.jpg")}
+              alt="Stillion & Board — Stone face with poppies"
+              className="w-full rounded-lg border border-surface-light"
+            />
+            <img
+              src={img("CurrentResearch/stillion_gen_2.jpg")}
+              alt="Stillion & Board — Bird on vase with poppies"
+              className="w-full rounded-lg border border-surface-light"
+            />
+          </div>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
   /* ── Stories — Vertical Video ── */
   {
     id: "stories-vertical-video",
