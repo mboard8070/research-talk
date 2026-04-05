@@ -83,11 +83,6 @@ const slides: SlideData[] = [
               />
             </p>
           </AnimateIn>
-          <AnimateIn delay={0.55}>
-            <p className="font-mono text-xs text-text-secondary/50 mt-6 parallax-subtle">
-              Assistant Professor of Games &amp; Animation
-            </p>
-          </AnimateIn>
         </div>
       </div>
     ),
@@ -2400,11 +2395,6 @@ const slides: SlideData[] = [
                 ]}
                 interval={2800}
               />
-            </p>
-          </AnimateIn>
-          <AnimateIn delay={0.55}>
-            <p className="font-mono text-xs text-text-secondary/50 mt-6 parallax-subtle">
-              Assistant Professor of Games &amp; Animation
             </p>
           </AnimateIn>
         </div>
