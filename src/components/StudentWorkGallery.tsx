@@ -80,11 +80,6 @@ export default function StudentWorkGallery({
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-2 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
-                <p className="text-[11px] font-mono text-white/90 truncate">
-                  {image.alt}
-                </p>
-              </div>
             </button>
           ))}
         </div>
@@ -115,11 +110,7 @@ export default function StudentWorkGallery({
                 className="max-w-full max-h-[80vh] object-contain rounded"
               />
 
-              {/* Caption bar */}
-              <div className="mt-3 flex items-center gap-4">
-                <p className="font-mono text-sm text-white/80">
-                  {images[selected].alt}
-                </p>
+              <div className="mt-3">
                 <span className="font-mono text-xs text-text-secondary">
                   {selected + 1} / {images.length}
                 </span>
