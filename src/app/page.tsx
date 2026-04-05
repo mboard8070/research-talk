@@ -59,11 +59,6 @@ const slides: SlideData[] = [
         />
         <div className="relative z-10 flex flex-col items-center justify-center text-center gap-6">
           <AnimateIn>
-            <p className="font-mono text-sm text-accent tracking-[0.3em] uppercase parallax-subtle">
-              DAAP &middot; School of Art &middot; Games &amp; Animation
-            </p>
-          </AnimateIn>
-          <AnimateIn delay={0.15}>
             <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-tight parallax-strong">
               <GlitchText>Matthew Board, MFA</GlitchText>
             </h1>
@@ -2383,11 +2378,6 @@ const slides: SlideData[] = [
         />
         <div className="relative z-10 flex flex-col items-center justify-center text-center gap-6">
           <AnimateIn>
-            <p className="font-mono text-sm text-accent tracking-[0.3em] uppercase parallax-subtle">
-              DAAP &middot; School of Art &middot; Games &amp; Animation
-            </p>
-          </AnimateIn>
-          <AnimateIn delay={0.15}>
             <h1 className="text-6xl md:text-7xl font-bold tracking-tight leading-tight parallax-strong">
               <GlitchText>Matthew Board, MFA</GlitchText>
             </h1>
