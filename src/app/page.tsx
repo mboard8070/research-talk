@@ -941,6 +941,23 @@ const slides: SlideData[] = [
     ),
   },
 
+  /* ── Vertical Video ── */
+  {
+    id: "vertical-video",
+    content: (
+      <div className="w-full flex flex-col items-center gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Vertical Video
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <VerticalVideoPlayer videoId="rVOwZSsl1b0" title="Vertical Video" />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
   /* ── And Then There Were Flowers — Hero ── */
   {
     id: "stillion-board-art",
@@ -1050,23 +1067,6 @@ const slides: SlideData[] = [
               />
             ))}
           </div>
-        </AnimateIn>
-      </div>
-    ),
-  },
-
-  /* ── Stories — Vertical Video ── */
-  {
-    id: "stories-vertical-video",
-    content: (
-      <div className="w-full flex flex-col items-center gap-4">
-        <AnimateIn>
-          <p className="font-mono text-sm text-accent tracking-wider uppercase">
-            Stories from the Cores &middot; Gameplay
-          </p>
-        </AnimateIn>
-        <AnimateIn delay={0.1}>
-          <VerticalVideoPlayer videoId="rVOwZSsl1b0" title="Stories from the Cores — Gameplay" />
         </AnimateIn>
       </div>
     ),
