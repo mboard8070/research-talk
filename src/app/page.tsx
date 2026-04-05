@@ -941,12 +941,12 @@ const slides: SlideData[] = [
     ),
   },
 
-  /* ── Stillion & Board — AI-Generated Work ── */
+  /* ── And Then There Were Flowers — Hero ── */
   {
     id: "stillion-board-art",
     content: (
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div className="flex flex-col gap-5">
+      <div className="w-full flex flex-col gap-5">
+        <div className="flex flex-col gap-3">
           <AnimateIn>
             <p className="font-mono text-sm text-accent tracking-wider uppercase">
               Stillion &amp; Board
@@ -954,11 +954,11 @@ const slides: SlideData[] = [
           </AnimateIn>
           <AnimateIn delay={0.1}>
             <h2 className="text-3xl font-bold">
-              AI-Generated <span className="text-accent">Art</span>
+              And Then There Were <span className="text-accent">Flowers</span>
             </h2>
           </AnimateIn>
           <AnimateIn delay={0.2}>
-            <p className="text-text-secondary leading-relaxed">
+            <p className="text-text-secondary leading-relaxed max-w-3xl">
               Continuing the Stillion &amp; Board collaboration with AI as a
               new medium. A custom LoRA trained on Stillion&apos;s paintings
               generates new compositions that carry forward the poppies,
@@ -972,34 +972,21 @@ const slides: SlideData[] = [
               Cincinnati.
             </p>
           </AnimateIn>
-          <AnimateIn delay={0.4}>
-            <div className="flex flex-wrap gap-2">
-              {["FLUX.1-dev", "LoRA", "DGX Spark", "Collaboration"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-0.5 rounded bg-surface-light text-text-secondary text-xs font-mono"
-                  >
-                    {tag}
-                  </span>
-                )
-              )}
-            </div>
-          </AnimateIn>
         </div>
-        <AnimateIn delay={0.15}>
-          <div className="grid grid-cols-1 gap-4">
-            <img
-              src={img("CurrentResearch/stillion_gen_1.jpg")}
-              alt="Stillion & Board — Stone face with poppies"
-              className="w-full rounded-lg border border-surface-light"
-            />
-            <img
-              src={img("CurrentResearch/stillion_gen_2.jpg")}
-              alt="Stillion & Board — Bird on vase with poppies"
-              className="w-full rounded-lg border border-surface-light"
-            />
-          </div>
+        <AnimateIn delay={0.35}>
+          <StudentWorkGallery
+            columns={4}
+            images={[
+              { src: img("CurrentResearch/stillion_gen_1.jpg"), alt: "Face jug with poppies" },
+              { src: img("CurrentResearch/stillion_gen_2.jpg"), alt: "Bird on vase with poppies" },
+              { src: img("StillionBoard/flowers_01.png"), alt: "Stone face jug — poppies" },
+              { src: img("StillionBoard/flowers_02.png"), alt: "Cracked jug — intact" },
+              { src: img("StillionBoard/flowers_03.png"), alt: "Cracked jug — fracturing" },
+              { src: img("StillionBoard/flowers_04.png"), alt: "Cracked jug — broken" },
+              { src: img("StillionBoard/flowers_05.png"), alt: "Blue face jug — poppies" },
+              { src: img("StillionBoard/flowers_06.png"), alt: "Blue face jug — shattered" },
+            ]}
+          />
         </AnimateIn>
       </div>
     ),
