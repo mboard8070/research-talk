@@ -12,6 +12,7 @@ import CustomCursor from "@/components/CustomCursor";
 import GlitchText from "@/components/GlitchText";
 import RotatingWords from "@/components/RotatingWords";
 import ImageCycler from "@/components/ImageCycler";
+import StudentWorkGallery from "@/components/StudentWorkGallery";
 import { useEffect } from "react";
 
 const Background3D = dynamic(() => import("@/components/Background3D"), {
@@ -141,6 +142,240 @@ const slides: SlideData[] = [
     ),
   },
 
+  /* ══════════════════════════════════════
+     INSPIRATION
+     ══════════════════════════════════════ */
+
+  /* ── Section: Inspiration ── */
+  {
+    id: "section-inspiration",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-4">
+        <AnimateIn>
+          <p className="font-mono text-sm text-text-secondary/50 tracking-[0.3em] uppercase">
+            01
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.1}>
+          <h2 className="text-5xl md:text-6xl font-bold">
+            <span className="text-accent">Inspiration</span>
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.25}>
+          <div
+            className="w-16 h-[2px] bg-accent mt-2"
+            style={{ boxShadow: "0 0 12px var(--accent-glow)" }}
+          />
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Victor Burgin Quote ── */
+  {
+    id: "burgin-quote",
+    content: (
+      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
+        <AnimateIn>
+          <p className="font-mono text-sm text-accent tracking-wider uppercase">
+            Historical Context
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.15}>
+          <h2 className="text-3xl md:text-4xl font-bold leading-relaxed italic">
+            &ldquo;I was drawn to this technology for much the same
+            reason I first turned to photography — because of its
+            ubiquitous contributions to the everyday environment
+            of images.&rdquo;
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={0.35}>
+          <p className="text-text-secondary text-lg">
+            — <span className="text-accent">Victor Burgin</span>,{" "}
+            <em>TANK Magazine</em> (2024), on his adoption of game
+            engine software for art-making
+          </p>
+        </AnimateIn>
+        <AnimateIn delay={0.45}>
+          <a
+            href="https://tank.tv/magazine/issue-98/features/ca-victor-burgin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs text-text-secondary/40 hover:text-accent transition-colors"
+          >
+            tank.tv/magazine/issue-98/features/ca-victor-burgin
+          </a>
+        </AnimateIn>
+      </div>
+    ),
+  },
+
+  /* ── Art & Technology Lineage: Paik + Rath ── */
+  {
+    id: "lineage-historical",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Paik */}
+        <div className="flex flex-col gap-4">
+          <AnimateIn>
+            <img
+              src={img("References/paik_kunstpalast_exhibit.jpg")}
+              alt="Nam June Paik — Exhibition"
+              className="w-full rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h3 className="text-2xl font-bold">Nam June Paik</h3>
+            <p className="text-accent text-sm font-mono">1932 – 2006 · Father of Video Art</p>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              First to treat the television as a sculptural medium. From{" "}
+              <em>TV Buddha</em> to <em>Electronic Superhighway</em>, Paik
+              insisted that new media tools demand new artistic vocabularies —
+              the direct philosophical predecessor to today&apos;s Creative AI
+              practice.
+            </p>
+          </AnimateIn>
+        </div>
+        {/* Rath */}
+        <div className="flex flex-col gap-4">
+          <AnimateIn delay={0.1}>
+            <img
+              src={img("References/rath_arecibo_sculpture.jpg")}
+              alt="Alan Rath — Arecibo (1992)"
+              className="max-h-[320px] mx-auto rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <h3 className="text-2xl font-bold">Alan Rath</h3>
+            <p className="text-accent text-sm font-mono">1959 – 2020 · Born in Cincinnati</p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              MIT-trained engineer turned electronic sculptor. Designed custom
+              hardware and wrote non-repeating generative software — an early
+              practitioner of algorithmic art. Showed with Carl Solway Gallery
+              in Cincinnati; work in the Cincinnati Art Museum collection.
+              1991 Whitney Biennial.
+            </p>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── Concept Design Lineage: Mead + Robertson ── */
+  {
+    id: "lineage-mead-robertson",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Syd Mead */}
+        <div className="flex flex-col gap-4">
+          <AnimateIn>
+            <img
+              src={img("References/syd_mead_gouache.jpg")}
+              alt="Syd Mead — Honda concept gouache rendering"
+              className="w-full rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h3 className="text-2xl font-bold">Syd Mead</h3>
+            <p className="text-accent text-sm font-mono">1933 – 2019 · Visual Futurist</p>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              Coined the title &ldquo;Visual Futurist.&rdquo; Concept designer for{" "}
+              <em>Blade Runner</em>, <em>Tron</em>, and <em>Aliens</em>. His
+              industrial-design approach to imaginary worlds — &ldquo;reality
+              ahead of schedule&rdquo; — established the modern concept-art
+              pipeline used across film, games, and automotive design.
+            </p>
+          </AnimateIn>
+        </div>
+        {/* Scott Robertson */}
+        <div className="flex flex-col gap-4">
+          <AnimateIn delay={0.1}>
+            <img
+              src={img("References/scott_robertson_hauler.jpg")}
+              alt="Scott Robertson — Sci-Fi Hauler concept"
+              className="w-full rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <h3 className="text-2xl font-bold">Scott Robertson</h3>
+            <p className="text-accent text-sm font-mono">Concept &amp; Industrial Designer</p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              Art Center grad who chaired the Entertainment Design department.
+              Authored 11 books including <em>How to Draw</em> and{" "}
+              <em>How to Render</em>. Clients include BMW, Nike, and Mattel;
+              film credits on <em>Minority Report</em>. Founded Design Studio
+              Press, shaping a generation of concept artists.
+            </p>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ── Contemporary Context: Anadol, Chung ── */
+  {
+    id: "lineage-contemporary",
+    content: (
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+        {/* Anadol */}
+        <div className="flex flex-col gap-3">
+          <AnimateIn>
+            <img
+              src={img("References/anadol_unsupervised.jpg")}
+              alt="Refik Anadol — Unsupervised (2022), MoMA"
+              className="w-full aspect-video object-cover rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.1}>
+            <h3 className="text-xl font-bold">Refik Anadol</h3>
+            <p className="text-accent text-xs font-mono">AI Data Sculptures</p>
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              Uses machine learning to transform massive datasets into immersive,
+              large-scale data sculptures. <em>Unsupervised</em> (2022) at MoMA
+              was trained on the museum&apos;s entire collection. Opening
+              DATALAND — the world&apos;s first AI art museum — in 2026.
+            </p>
+          </AnimateIn>
+        </div>
+        {/* Chung */}
+        <div className="flex flex-col gap-3">
+          <AnimateIn delay={0.1}>
+            <img
+              src={img("References/chung_art_and_artifice.jpg")}
+              alt="Sougwen Chung — Drawing with D.O.U.G."
+              className="w-full aspect-video object-cover rounded-lg border border-surface-light"
+            />
+          </AnimateIn>
+          <AnimateIn delay={0.2}>
+            <h3 className="text-xl font-bold">Sougwen Chung</h3>
+            <p className="text-accent text-xs font-mono">Human–AI Collaboration</p>
+          </AnimateIn>
+          <AnimateIn delay={0.3}>
+            <p className="text-text-secondary leading-relaxed text-sm">
+              Paints alongside robotic arms driven by AI trained on their own
+              brushstrokes and biometric data. A decade-long exploration of
+              human–machine co-authorship — collaboration, not replacement.
+            </p>
+          </AnimateIn>
+        </div>
+      </div>
+    ),
+  },
+
+  /* ══════════════════════════════════════
+     CREATIVE WORK
+     ══════════════════════════════════════ */
+
   /* ── 04 · Section: Creative Work ── */
   {
     id: "section-work",
@@ -148,7 +383,7 @@ const slides: SlideData[] = [
       <div className="w-full flex flex-col items-center justify-center text-center gap-6">
         <AnimateIn>
           <p className="font-mono text-sm text-text-secondary/50 tracking-[0.3em] uppercase">
-            01
+            02
           </p>
         </AnimateIn>
         <AnimateIn delay={0.1}>
@@ -753,7 +988,7 @@ const slides: SlideData[] = [
       <div className="w-full flex flex-col items-center justify-center text-center gap-4">
         <AnimateIn>
           <p className="font-mono text-sm text-text-secondary/50 tracking-[0.3em] uppercase">
-            02
+            03
           </p>
         </AnimateIn>
         <AnimateIn delay={0.1}>
@@ -789,7 +1024,7 @@ const slides: SlideData[] = [
           </AnimateIn>
         </div>
         <AnimateIn delay={0.2}>
-          <ImageCycler
+          <StudentWorkGallery
             images={[
               { src: img("StudentWork/evan-sweeney-roybeauty2-2.jpg"), alt: "Evan Sweeney" },
               { src: img("StudentWork/evan-sweeney-roybeauty4.jpg"), alt: "Evan Sweeney" },
@@ -845,8 +1080,6 @@ const slides: SlideData[] = [
               { src: img("StudentWork/GDCSlidedImages/CarouselDesignDoc2.png"), alt: "Student Work" },
               { src: img("StudentWork/GDCSlidedImages/FootDesignDoc.png"), alt: "Student Work" },
             ]}
-            interval={4000}
-            className="rounded border border-surface-light mx-auto" style={{ width: "calc(100% - 216px)" }}
           />
         </AnimateIn>
       </div>
@@ -866,32 +1099,23 @@ const slides: SlideData[] = [
   },
 
   /* ══════════════════════════════════════
-     CURRENT RESEARCH
+     CUSTOM TOOLS
      ══════════════════════════════════════ */
 
-  /* ══════════════════════════════════════
-     CURRENT RESEARCH — INFRASTRUCTURE
-     ══════════════════════════════════════ */
-
-  /* ── Section: Current Research ── */
+  /* ── Section: Custom Tools ── */
   {
-    id: "section-research",
+    id: "section-tools",
     content: (
       <div className="w-full flex flex-col items-center justify-center text-center gap-4">
         <AnimateIn>
           <p className="font-mono text-sm text-text-secondary/50 tracking-[0.3em] uppercase">
-            03
+            04
           </p>
         </AnimateIn>
         <AnimateIn delay={0.1}>
           <h2 className="text-5xl md:text-6xl font-bold">
-            Current Creative <span className="text-accent">Research</span>
+            Custom <span className="text-accent">Tools</span>
           </h2>
-        </AnimateIn>
-        <AnimateIn delay={0.15}>
-          <p className="text-xl text-text-secondary">
-            Infrastructure &amp; Exploration
-          </p>
         </AnimateIn>
         <AnimateIn delay={0.25}>
           <div
@@ -899,237 +1123,6 @@ const slides: SlideData[] = [
             style={{ boxShadow: "0 0 12px var(--accent-glow)" }}
           />
         </AnimateIn>
-      </div>
-    ),
-  },
-
-  /* ── Research Philosophy ── */
-  {
-    id: "research-philosophy",
-    content: (
-      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
-        <AnimateIn>
-          <p className="font-mono text-sm text-accent tracking-wider uppercase">
-            Research Philosophy
-          </p>
-        </AnimateIn>
-        <AnimateIn delay={0.15}>
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-            &ldquo;How can AI augment — not replace — the
-            creative process?&rdquo;
-          </h2>
-        </AnimateIn>
-        <AnimateIn delay={0.3}>
-          <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
-            My research sits at the intersection of traditional 3D art pipelines
-            and artificial intelligence. From integrating LLMs into game engines
-            to training custom models and building local AI infrastructure, I
-            investigate how emerging tools can expand what artists and developers
-            are capable of — while keeping the human at the center of the creative
-            process.
-          </p>
-        </AnimateIn>
-      </div>
-    ),
-  },
-
-  /* ── Victor Burgin Quote ── */
-  {
-    id: "burgin-quote",
-    content: (
-      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
-        <AnimateIn>
-          <p className="font-mono text-sm text-accent tracking-wider uppercase">
-            Historical Context
-          </p>
-        </AnimateIn>
-        <AnimateIn delay={0.15}>
-          <h2 className="text-3xl md:text-4xl font-bold leading-relaxed italic">
-            &ldquo;I was drawn to this technology for much the same
-            reason I first turned to photography — because of its
-            ubiquitous contributions to the everyday environment
-            of images.&rdquo;
-          </h2>
-        </AnimateIn>
-        <AnimateIn delay={0.35}>
-          <p className="text-text-secondary text-lg">
-            — <span className="text-accent">Victor Burgin</span>,{" "}
-            <em>TANK Magazine</em> (2024), on his adoption of game
-            engine software for art-making
-          </p>
-        </AnimateIn>
-        <AnimateIn delay={0.45}>
-          <a
-            href="https://tank.tv/magazine/issue-98/features/ca-victor-burgin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-mono text-xs text-text-secondary/40 hover:text-accent transition-colors"
-          >
-            tank.tv/magazine/issue-98/features/ca-victor-burgin
-          </a>
-        </AnimateIn>
-      </div>
-    ),
-  },
-
-  /* ── Art & Technology Lineage: Paik + Rath ── */
-  {
-    id: "lineage-historical",
-    content: (
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        {/* Paik */}
-        <div className="flex flex-col gap-4">
-          <AnimateIn>
-            <img
-              src={img("References/paik_kunstpalast_exhibit.jpg")}
-              alt="Nam June Paik — Exhibition"
-              className="w-full rounded-lg border border-surface-light"
-            />
-          </AnimateIn>
-          <AnimateIn delay={0.1}>
-            <h3 className="text-2xl font-bold">Nam June Paik</h3>
-            <p className="text-accent text-sm font-mono">1932 – 2006 · Father of Video Art</p>
-          </AnimateIn>
-          <AnimateIn delay={0.2}>
-            <p className="text-text-secondary leading-relaxed text-sm">
-              First to treat the television as a sculptural medium. From{" "}
-              <em>TV Buddha</em> to <em>Electronic Superhighway</em>, Paik
-              insisted that new media tools demand new artistic vocabularies —
-              the direct philosophical predecessor to today&apos;s Creative AI
-              practice.
-            </p>
-          </AnimateIn>
-        </div>
-        {/* Rath */}
-        <div className="flex flex-col gap-4">
-          <AnimateIn delay={0.1}>
-            <img
-              src={img("References/rath_arecibo_sculpture.jpg")}
-              alt="Alan Rath — Arecibo (1992)"
-              className="max-h-[320px] mx-auto rounded-lg border border-surface-light"
-            />
-          </AnimateIn>
-          <AnimateIn delay={0.2}>
-            <h3 className="text-2xl font-bold">Alan Rath</h3>
-            <p className="text-accent text-sm font-mono">1959 – 2020 · Born in Cincinnati</p>
-          </AnimateIn>
-          <AnimateIn delay={0.3}>
-            <p className="text-text-secondary leading-relaxed text-sm">
-              MIT-trained engineer turned electronic sculptor. Designed custom
-              hardware and wrote non-repeating generative software — an early
-              practitioner of algorithmic art. Showed with Carl Solway Gallery
-              in Cincinnati; work in the Cincinnati Art Museum collection.
-              1991 Whitney Biennial.
-            </p>
-          </AnimateIn>
-        </div>
-      </div>
-    ),
-  },
-
-  /* ── Concept Design Lineage: Mead + Robertson ── */
-  {
-    id: "lineage-mead-robertson",
-    content: (
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        {/* Syd Mead */}
-        <div className="flex flex-col gap-4">
-          <AnimateIn>
-            <img
-              src={img("References/syd_mead_gouache.jpg")}
-              alt="Syd Mead — Honda concept gouache rendering"
-              className="w-full rounded-lg border border-surface-light"
-            />
-          </AnimateIn>
-          <AnimateIn delay={0.1}>
-            <h3 className="text-2xl font-bold">Syd Mead</h3>
-            <p className="text-accent text-sm font-mono">1933 – 2019 · Visual Futurist</p>
-          </AnimateIn>
-          <AnimateIn delay={0.2}>
-            <p className="text-text-secondary leading-relaxed text-sm">
-              Coined the title &ldquo;Visual Futurist.&rdquo; Concept designer for{" "}
-              <em>Blade Runner</em>, <em>Tron</em>, and <em>Aliens</em>. His
-              industrial-design approach to imaginary worlds — &ldquo;reality
-              ahead of schedule&rdquo; — established the modern concept-art
-              pipeline used across film, games, and automotive design.
-            </p>
-          </AnimateIn>
-        </div>
-        {/* Scott Robertson */}
-        <div className="flex flex-col gap-4">
-          <AnimateIn delay={0.1}>
-            <img
-              src={img("References/scott_robertson_hauler.jpg")}
-              alt="Scott Robertson — Sci-Fi Hauler concept"
-              className="w-full rounded-lg border border-surface-light"
-            />
-          </AnimateIn>
-          <AnimateIn delay={0.2}>
-            <h3 className="text-2xl font-bold">Scott Robertson</h3>
-            <p className="text-accent text-sm font-mono">Concept &amp; Industrial Designer</p>
-          </AnimateIn>
-          <AnimateIn delay={0.3}>
-            <p className="text-text-secondary leading-relaxed text-sm">
-              Art Center grad who chaired the Entertainment Design department.
-              Authored 11 books including <em>How to Draw</em> and{" "}
-              <em>How to Render</em>. Clients include BMW, Nike, and Mattel;
-              film credits on <em>Minority Report</em>. Founded Design Studio
-              Press, shaping a generation of concept artists.
-            </p>
-          </AnimateIn>
-        </div>
-      </div>
-    ),
-  },
-
-  /* ── Contemporary Context: Anadol, Chung ── */
-  {
-    id: "lineage-contemporary",
-    content: (
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-        {/* Anadol */}
-        <div className="flex flex-col gap-3">
-          <AnimateIn>
-            <img
-              src={img("References/anadol_unsupervised.jpg")}
-              alt="Refik Anadol — Unsupervised (2022), MoMA"
-              className="w-full aspect-video object-cover rounded-lg border border-surface-light"
-            />
-          </AnimateIn>
-          <AnimateIn delay={0.1}>
-            <h3 className="text-xl font-bold">Refik Anadol</h3>
-            <p className="text-accent text-xs font-mono">AI Data Sculptures</p>
-          </AnimateIn>
-          <AnimateIn delay={0.2}>
-            <p className="text-text-secondary leading-relaxed text-sm">
-              Uses machine learning to transform massive datasets into immersive,
-              large-scale data sculptures. <em>Unsupervised</em> (2022) at MoMA
-              was trained on the museum&apos;s entire collection. Opening
-              DATALAND — the world&apos;s first AI art museum — in 2026.
-            </p>
-          </AnimateIn>
-        </div>
-        {/* Chung */}
-        <div className="flex flex-col gap-3">
-          <AnimateIn delay={0.1}>
-            <img
-              src={img("References/chung_art_and_artifice.jpg")}
-              alt="Sougwen Chung — Drawing with D.O.U.G."
-              className="w-full aspect-video object-cover rounded-lg border border-surface-light"
-            />
-          </AnimateIn>
-          <AnimateIn delay={0.2}>
-            <h3 className="text-xl font-bold">Sougwen Chung</h3>
-            <p className="text-accent text-xs font-mono">Human–AI Collaboration</p>
-          </AnimateIn>
-          <AnimateIn delay={0.3}>
-            <p className="text-text-secondary leading-relaxed text-sm">
-              Paints alongside robotic arms driven by AI trained on their own
-              brushstrokes and biometric data. A decade-long exploration of
-              human–machine co-authorship — collaboration, not replacement.
-            </p>
-          </AnimateIn>
-        </div>
       </div>
     ),
   },
@@ -1180,90 +1173,6 @@ const slides: SlideData[] = [
             </div>
           </AnimateIn>
         </div>
-      </div>
-    ),
-  },
-
-  /* ── 17 · What is a LoRA? ── */
-  {
-    id: "what-is-lora",
-    content: (
-      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
-        <AnimateIn>
-          <p className="font-mono text-sm text-accent tracking-wider uppercase">
-            Key Concept
-          </p>
-        </AnimateIn>
-        <AnimateIn delay={0.15}>
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-            What is a <span className="text-accent">LoRA</span>?
-          </h2>
-        </AnimateIn>
-        <AnimateIn delay={0.3}>
-          <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
-            <span className="text-accent font-semibold">LoRA</span> (Low-Rank Adaptation)
-            is a technique that fine-tunes a small set of additional weights
-            on top of a large pre-trained model, allowing you to teach it a
-            specific writing style or domain expertise without retraining the
-            entire network.
-          </p>
-        </AnimateIn>
-      </div>
-    ),
-  },
-
-  /* ── 18 · What is RAG? ── */
-  {
-    id: "what-is-rag",
-    content: (
-      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
-        <AnimateIn>
-          <p className="font-mono text-sm text-accent tracking-wider uppercase">
-            Key Concept
-          </p>
-        </AnimateIn>
-        <AnimateIn delay={0.15}>
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-            What is <span className="text-accent">RAG</span>?
-          </h2>
-        </AnimateIn>
-        <AnimateIn delay={0.3}>
-          <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
-            <span className="text-accent font-semibold">RAG</span> (Retrieval-Augmented
-            Generation) is a technique where an AI model retrieves relevant
-            documents or data from an external source before generating a
-            response — grounding its output in real, up-to-date information
-            rather than relying solely on its training data.
-          </p>
-        </AnimateIn>
-      </div>
-    ),
-  },
-
-  /* ── 19 · What is a Vector Database? ── */
-  {
-    id: "what-is-vectordb",
-    content: (
-      <div className="w-full flex flex-col items-center justify-center text-center gap-8 max-w-4xl mx-auto">
-        <AnimateIn>
-          <p className="font-mono text-sm text-accent tracking-wider uppercase">
-            Key Concept
-          </p>
-        </AnimateIn>
-        <AnimateIn delay={0.15}>
-          <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-            What is a <span className="text-accent">Vector Database</span>?
-          </h2>
-        </AnimateIn>
-        <AnimateIn delay={0.3}>
-          <p className="text-lg text-text-secondary leading-relaxed max-w-2xl">
-            A <span className="text-accent font-semibold">vector database</span> stores
-            data as high-dimensional numerical embeddings — mathematical
-            representations of meaning. This allows you to search by
-            similarity rather than exact keywords, powering RAG pipelines,
-            semantic search, and recommendation systems.
-          </p>
-        </AnimateIn>
       </div>
     ),
   },
@@ -1320,7 +1229,7 @@ const slides: SlideData[] = [
   },
 
   /* ══════════════════════════════════════
-     CURRENT RESEARCH — EXPLORATION
+     CUSTOM TOOLS — PROJECTS
      ══════════════════════════════════════ */
 
   /* ── Article-Gen ── */
